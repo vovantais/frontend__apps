@@ -12,20 +12,6 @@ import {
 const AuthReduser = (prevState = {}, action) => {
 	const { ...state } = prevState;
 	switch (action.type) {
-		case AUTH_SIGNIN_FETCH:
-			return {
-				isCheckAuth: true,
-			}
-		case AUTH_SIGNIN_SUCCESS:
-			return {
-				isCheckAuth: false,
-				token: action.payload.token,
-				isAuthAccsess: true,
-			}
-		case AUTH_SIGNIN_FAILURE:
-			return {
-				isCheckAuth: false,
-			}
 		case AUTH_LOGIN_FETCH:
 			return {
 				isCheckAuth: true,
@@ -33,8 +19,22 @@ const AuthReduser = (prevState = {}, action) => {
 		case AUTH_LOGIN_SUCCESS:
 			return {
 				isCheckAuth: false,
+				token: action.payload.token,
+				isAuthAccsess: true,
 			}
 		case AUTH_LOGIN_FAILURE:
+			return {
+				isCheckAuth: false,
+			}
+		case AUTH_SIGNIN_FETCH:
+			return {
+				isCheckAuth: true,
+			}
+		case AUTH_SIGNIN_SUCCESS:
+			return {
+				isCheckAuth: false,
+			}
+		case AUTH_SIGNIN_FAILURE:
 			return {
 				isCheckAuth: false,
 			}

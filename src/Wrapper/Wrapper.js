@@ -4,7 +4,7 @@ import {
 	Switch,
 	Route,
 } from "react-router-dom";
-import SignInForm from '../Components/SignInForm';
+import LogInForm from '../Components/LogInForm';
 import HomePage from '../Components/HomePage';
 
 function Wrapper() {
@@ -13,7 +13,7 @@ function Wrapper() {
 			<Router>
 				<Switch>
 					<Route exact path='/'>
-						<SignInForm />
+						<LogInForm />
 					</Route>
 					<Route exact path='/homepage'>
 						<HomePage />
