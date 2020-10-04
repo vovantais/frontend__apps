@@ -7,7 +7,9 @@ import {
 
 	AUTH_LOGIN_FETCH,
 	AUTH_LOGIN_SUCCESS,
-	AUTH_LOGIN_FAILURE
+	AUTH_LOGIN_FAILURE,
+
+	CLOSE_MESSAGE,
 } from './action-types';
 
 // * Auth Log In 
@@ -34,9 +36,9 @@ export const AuthSignInFetch = (sigInPyload) => (dispatch) => {
 	dispatch({
 		type: AUTH_SIGNIN_FETCH,
 	})
-	axios.post(`${API_URI}/registration`, { ...sigInPyload })
+	axios.post(`${API_URI}/registration`, sigInPyload)
 		.then(res => dispatch(AuthSignInSuccess(res.data)))
-		.catch(err => dispatch(AuthSignInFail(err.data)))
+		.catch(err => dispatch(AuthSignInFail(err.response.data)))
 };
 export const AuthSignInSuccess = (payload) => ({
 	type: AUTH_SIGNIN_SUCCESS,
@@ -45,4 +47,8 @@ export const AuthSignInSuccess = (payload) => ({
 export const AuthSignInFail = (payload) => ({
 	type: AUTH_SIGNIN_FAILURE,
 	payload,
+});
+
+export const CloseMessage = () => ({
+	type: CLOSE_MESSAGE,
 });

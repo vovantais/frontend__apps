@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthLogInFetch } from '../Redux/action-creators';
 import styled from 'styled-components';
-import SignInForm from './SigInForm';
+import SignInForm from './SiginForm';
 
 const Section = styled.section`
 	width: 100%;

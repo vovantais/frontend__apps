@@ -7,6 +7,8 @@ import {
 	AUTH_LOGIN_FETCH,
 	AUTH_LOGIN_SUCCESS,
 	AUTH_LOGIN_FAILURE,
+
+	CLOSE_MESSAGE,
 } from './action-types';
 
 const AuthReduser = (prevState = {}, action) => {
@@ -43,8 +45,20 @@ const AuthReduser = (prevState = {}, action) => {
 	}
 }
 
+const message = (prevState = {}, action) => {
+	switch (action.type) {
+		case AUTH_SIGNIN_SUCCESS:
+		case AUTH_SIGNIN_FAILURE:
+			return { ...action.payload.message };
+		case CLOSE_MESSAGE:
+			return {};
+		default:
+			return prevState;
+	}
+}
 const reducers = combineReducers({
 	auth: AuthReduser,
+	message,
 });
 
 export default reducers;

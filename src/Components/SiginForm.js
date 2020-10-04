@@ -14,7 +14,6 @@ function SigInForm(modal) {
 	const [UserInfo, SetUserInfo] = useState(initialState);
 	const { isCheckAuth, isAuthAccsess } = useSelector(({ auth }) => auth);
 	const dispatch = useDispatch();
-	const authSigIn = bindActionCreators(AuthSignInFetch, dispatch);
 
 	const handleChangeInfo = (e) => {
 		console.log(e.target.value);
@@ -25,17 +24,13 @@ function SigInForm(modal) {
 	}
 	const handleSubmitForm = (e) => {
 		e.preventDefault();
-		// todo =================
-		if (UserInfo.password !== UserInfo.confirmPassword) {
-			console.log('Forbidden');
-		}
-		SetUserInfo(initialState);
-		e.preventDefault();
-	}
-	const handleSignIn = () => {
-		authSigIn({ ...UserInfo });
-	}
 
+		// todo =================
+		if (UserInfo.password.length >= 8 && UserInfo.password === UserInfo.confirmPassword) {
+			dispatch(AuthSignInFetch({ ...UserInfo }))
+			SetUserInfo(initialState);
+		}
+	}
 	return (
 		<Modal show={modal.showModal} onHide={modal.closeModal} style={{ marginTop: 120, }} >
 			<Modal.Header closeButton>
@@ -54,12 +49,12 @@ function SigInForm(modal) {
 							onChange={handleChangeInfo} value={UserInfo.password} />
 					</Form.Group>
 					<Form.Group controlId="formBasicConfirmPassword">
-						<Form.Label><i className="fas fa-lock"></i>Confirm your password</Form.Label>
+						<Form.Label><i className="fas fa-key"></i>Confirm your password</Form.Label>
 						<Form.Control type="password" name='confirmPassword' placeholder="Confirm password"
 							onChange={handleChangeInfo} value={UserInfo.confirmPassword} />
 					</Form.Group>
 					<Button variant='primary' type='submit' name='btnLog'
-						style={{ width: 120 }} onClick={handleSignIn} disabled={isCheckAuth}>Send</Button>
+						style={{ width: 120 }} disabled={isCheckAuth}>Send</Button>
 				</Form>
 			</Modal.Body>
 		</Modal >
