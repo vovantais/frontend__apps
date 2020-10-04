@@ -8,4 +8,6 @@ export const AUTH_SIGNIN_FETCH = 'AUTH_SIGNIN_FETCH';
 export const AUTH_SIGNIN_SUCCESS = 'AUTH_SIGNIN_SUCCESS';
 export const AUTH_SIGNIN_FAILURE = 'AUTH_SIGNIN_FAILURE';
 
+// ! Messages 
 export const CLOSE_MESSAGE = 'CLOSE_MESSAGE';
+

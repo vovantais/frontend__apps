@@ -17,9 +17,9 @@ export const AuthLogInFetch = (loginPayload) => (dispatch) => {
 	dispatch({
 		type: AUTH_LOGIN_FETCH,
 	})
-	axios.post(`${API_URI}/Login`, { ...loginPayload })
+	axios.post(`${API_URI}/Login`, loginPayload)
 		.then(res => dispatch(AuthLogInSuccess(res.data)))
-		.catch(err => dispatch(AuthLogInFail(err.data)))
+		.catch(err => dispatch(AuthLogInFail(err.response.data)))
 
 };
 export const AuthLogInSuccess = (payload) => ({
@@ -52,3 +52,4 @@ export const AuthSignInFail = (payload) => ({
 export const CloseMessage = () => ({
 	type: CLOSE_MESSAGE,
 });
+

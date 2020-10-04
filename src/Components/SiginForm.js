@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
-import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthSignInFetch } from '../Redux/action-creators';
 
@@ -10,6 +9,9 @@ function SigInForm(modal) {
 		email: '',
 		password: '',
 		confirmPassword: '',
+		emailError: '',
+		passwordError: '',
+		confirmPasswordError: '',
 	};
 	const [UserInfo, SetUserInfo] = useState(initialState);
 	const { isCheckAuth, isAuthAccsess } = useSelector(({ auth }) => auth);
@@ -22,11 +24,30 @@ function SigInForm(modal) {
 			[e.target.name]: e.target.value,
 		})
 	}
+	const validate = () => {
+		let passwordError = '';
+		let confirmPasswordError = '';
+
+		if (UserInfo.password.length < 8) {
+			passwordError = 'Password must be more than 8 symbol!';
+		}
+		if (passwordError) {
+			SetUserInfo({ passwordError });
+			return false;
+		}
+		if (UserInfo.password !== UserInfo.confirmPassword) {
+			confirmPasswordError = 'Passwords is not the same!';
+		}
+		if (confirmPasswordError) {
+			SetUserInfo({ confirmPasswordError });
+			return false;
+		}
+		return true;
+	}
 	const handleSubmitForm = (e) => {
 		e.preventDefault();
-
-		// todo =================
-		if (UserInfo.password.length >= 8 && UserInfo.password === UserInfo.confirmPassword) {
+		const isValid = validate();
+		if (isValid) {
 			dispatch(AuthSignInFetch({ ...UserInfo }))
 			SetUserInfo(initialState);
 		}
@@ -43,13 +64,15 @@ function SigInForm(modal) {
 						<Form.Control type="email" name='email' placeholder="Enter email"
 							onChange={handleChangeInfo} value={UserInfo.email} />
 					</Form.Group>
+					<div><h5 style={{ color: 'red' }}>{UserInfo.passwordError}</h5></div>
 					<Form.Group controlId="formBasicPassword">
 						<Form.Label><i className="fas fa-lock"></i>Enter your password</Form.Label>
 						<Form.Control type="password" name='password' placeholder="Enter password"
 							onChange={handleChangeInfo} value={UserInfo.password} />
 					</Form.Group>
+					<div><h5 style={{ color: 'red' }}>{UserInfo.confirmPasswordError}</h5></div>
 					<Form.Group controlId="formBasicConfirmPassword">
-						<Form.Label><i className="fas fa-key"></i>Confirm your password</Form.Label>
+						<Form.Label><i className="fas fa-lock"></i>Confirm your password</Form.Label>
 						<Form.Control type="password" name='confirmPassword' placeholder="Confirm password"
 							onChange={handleChangeInfo} value={UserInfo.confirmPassword} />
 					</Form.Group>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthLogInFetch } from '../Redux/action-creators';
 import styled from 'styled-components';
@@ -29,13 +28,13 @@ function LogInForm() {
 	const initialState = {
 		email: '',
 		password: '',
+		accessKey: '',
 	};
 
 	const [UserInfo, SetUserInfo] = useState(initialState);
 	const [show, setShow] = useState(false);
 	const { isCheckAuth, isAuthAccsess } = useSelector(({ auth }) => auth);
 	const dispatch = useDispatch();
-	const authLogin = bindActionCreators(AuthLogInFetch, dispatch);
 
 	const handleChangeInfo = (e) => {
 		SetUserInfo({
@@ -57,7 +56,7 @@ function LogInForm() {
 	};
 
 	const handleLogIn = () => {
-		authLogin({ ...UserInfo });
+		dispatch(AuthLogInFetch({ ...UserInfo }))
 	}
 
 	const AuthorizationForm = (
@@ -74,7 +73,13 @@ function LogInForm() {
 						<Form.Control type="password" name='password' placeholder="Enter password"
 							onChange={handleChangeInfo} value={UserInfo.password} />
 					</Form.Group>
-					<Button variant='primary' type='submit' name='btnSign' onClick={handleLogIn}
+					<Form.Group controlId="formBasicAccessKey">
+						<Form.Label ><i className="fas fa-key"></i>Enter your an access key</Form.Label>
+						<Form.Control type="password" name='accessKey' placeholder="Enter access key"
+							onChange={handleChangeInfo} value={UserInfo.accessKey} />
+					</Form.Group>
+					<Button variant='primary' type='submit' name='btnSign'
+						onClick={handleLogIn}
 						style={{ marginRight: 55, width: 120 }} disabled={isCheckAuth} >Log In</Button>
 					<Button variant='primary' type='submit' name='btnLog' onClick={handleShow}
 						style={{ width: 120 }}> Sign In</Button>

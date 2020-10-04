@@ -47,6 +47,8 @@ const AuthReduser = (prevState = {}, action) => {
 
 const message = (prevState = {}, action) => {
 	switch (action.type) {
+		case AUTH_LOGIN_SUCCESS:
+		case AUTH_LOGIN_FAILURE:
 		case AUTH_SIGNIN_SUCCESS:
 		case AUTH_SIGNIN_FAILURE:
 			return { ...action.payload.message };
