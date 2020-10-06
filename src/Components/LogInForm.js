@@ -28,7 +28,6 @@ function LogInForm() {
 	const initialState = {
 		email: '',
 		password: '',
-		accessKey: '',
 	};
 
 	const [UserInfo, SetUserInfo] = useState(initialState);
@@ -72,11 +71,6 @@ function LogInForm() {
 						<Form.Label ><i className="fas fa-lock"></i>Enter your password</Form.Label>
 						<Form.Control type="password" name='password' placeholder="Enter password"
 							onChange={handleChangeInfo} value={UserInfo.password} />
-					</Form.Group>
-					<Form.Group controlId="formBasicAccessKey">
-						<Form.Label ><i className="fas fa-key"></i>Enter your an access key</Form.Label>
-						<Form.Control type="password" name='accessKey' placeholder="Enter access key"
-							onChange={handleChangeInfo} value={UserInfo.accessKey} />
 					</Form.Group>
 					<Button variant='primary' type='submit' name='btnSign'
 						onClick={handleLogIn}
