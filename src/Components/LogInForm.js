@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthLogInFetch } from '../Redux/action-creators';
 import styled from 'styled-components';
-import SignInForm from './SiginForm';
+
 
 const Section = styled.section`
 	width: 100%;
@@ -21,7 +21,6 @@ const Section = styled.section`
    right: 0;
 	bottom: 0;
 	padding: 0px 10px 0px 10px;
-	
 `;
 function LogInForm() {
 
@@ -29,9 +28,8 @@ function LogInForm() {
 		email: '',
 		password: '',
 	};
-
+	const history = useHistory();
 	const [UserInfo, SetUserInfo] = useState(initialState);
-	const [show, setShow] = useState(false);
 	const { isCheckAuth, isAuthAccsess } = useSelector(({ auth }) => auth);
 	const dispatch = useDispatch();
 
@@ -41,18 +39,13 @@ function LogInForm() {
 			[e.target.name]: e.target.value,
 		})
 	}
-
+	const goBack = () => {
+		history.goBack();
+	}
 	const handleSubmitForm = (e) => {
 		e.preventDefault();
 		SetUserInfo(initialState);
 	}
-
-	const handleClose = () => setShow(false);
-
-	const handleShow = (e) => {
-		e.preventDefault();
-		return setShow(true);
-	};
 
 	const handleLogIn = () => {
 		dispatch(AuthLogInFetch({ ...UserInfo }))
@@ -72,14 +65,13 @@ function LogInForm() {
 						<Form.Control type="password" name='password' placeholder="Enter password"
 							onChange={handleChangeInfo} value={UserInfo.password} />
 					</Form.Group>
-					<Button variant='primary' type='submit' name='btnSign'
+					<Button variant='primary' type='submit' name='btnlogin'
 						onClick={handleLogIn}
 						style={{ marginRight: 55, width: 120 }} disabled={isCheckAuth} >Log In</Button>
-					<Button variant='primary' type='submit' name='btnLog' onClick={handleShow}
-						style={{ width: 120 }}> Sign In</Button>
+					<Button variant='primary' type='submit' name='Goback' onClick={goBack}
+						style={{ width: 120 }}> Go back</Button>
 				</Form>
 			</Section>
-			<SignInForm showModal={show} closeModal={handleClose} />
 		</Container>
 	);
 	return isAuthAccsess ? <Redirect to='/homepage' /> : AuthorizationForm;

@@ -1,10 +1,27 @@
 import React, { useState } from 'react';
 import { Modal, Form, Button, Container } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthSignInFetch } from '../Redux/action-creators';
 import VerifyUser from './VerifyUser';
+import styled from 'styled-components';
 
-
+const Section = styled.section`
+	width: 100%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   align-content: center;
+   justify-content: center;
+   overflow: auto;
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+	bottom: 0;
+	padding: 0px 10px 0px 10px;
+`;
 function SigInForm(modal) {
 	const initialState = {
 		email: '',
@@ -18,6 +35,11 @@ function SigInForm(modal) {
 	const [show, setShow] = useState(false);
 	const { isCheckAuth, isAuthAccsess } = useSelector(({ auth }) => auth);
 	const dispatch = useDispatch();
+	const history = useHistory();
+
+	const goBack = () => {
+		history.goBack();
+	}
 
 	const handleChangeInfo = (e) => {
 		console.log(e.target.value);
@@ -62,39 +84,36 @@ function SigInForm(modal) {
 	}
 	return (
 		<Container >
-			<Modal show={modal.showModal} onHide={modal.closeModal} style={{ marginTop: 20, }} >
-				<Modal.Header closeButton>
-					<Modal.Title>Sign In</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<Form onSubmit={handleSubmitForm}>
-						<Form.Group controlId="formBasicEmail">
-							<Form.Label><i className="far fa-envelope"></i> Enter your email address</Form.Label>
-							<Form.Control type="email" name='email' placeholder="Enter email"
-								onChange={handleChangeInfo} value={UserInfo.email} />
-						</Form.Group>
-						<div><h5 style={{ color: 'red' }}>{UserInfo.passwordError}</h5></div>
-						<Form.Group controlId="formBasicPassword">
-							<Form.Label><i className="fas fa-lock"></i>Enter your password</Form.Label>
-							<Form.Control type="password" name='password' placeholder="Enter password"
-								onChange={handleChangeInfo} value={UserInfo.password} />
-						</Form.Group>
-						<div><h5 style={{ color: 'red' }}>{UserInfo.confirmPasswordError}</h5></div>
-						<Form.Group controlId="formBasicConfirmPassword">
-							<Form.Label><i className="fas fa-lock"></i>Confirm your password</Form.Label>
-							<Form.Control type="password" name='confirmPassword' placeholder="Confirm password"
-								onChange={handleChangeInfo} value={UserInfo.confirmPassword} />
-						</Form.Group>
-						<div className="text-center" >
-							<Button variant='primary' type='submit' name='btnSignIn' style={{ width: 120, marginRight: 30 }}
-								disabled={isCheckAuth}>Send data</Button>
-							<Button variant='primary' type='submit' name='btnVerify' style={{ width: 120 }} onClick={handleShowModal}>
-								Verify email</Button>
-						</div>
-					</Form>
-				</Modal.Body>
-			</Modal >
-			<VerifyUser showModal={show} closeModal={handleCloseModal} />
+			<Section>
+				<Form onSubmit={handleSubmitForm}>
+					<Form.Group controlId="formBasicEmail">
+						<Form.Label><i className="far fa-envelope"></i> Enter your email address</Form.Label>
+						<Form.Control type="email" name='email' placeholder="Enter email"
+							onChange={handleChangeInfo} value={UserInfo.email} />
+					</Form.Group>
+					<div><h5 style={{ color: 'red' }}>{UserInfo.passwordError}</h5></div>
+					<Form.Group controlId="formBasicPassword">
+						<Form.Label><i className="fas fa-lock"></i>Enter your password</Form.Label>
+						<Form.Control type="password" name='password' placeholder="Enter password"
+							onChange={handleChangeInfo} value={UserInfo.password} />
+					</Form.Group>
+					<div><h5 style={{ color: 'red' }}>{UserInfo.confirmPasswordError}</h5></div>
+					<Form.Group controlId="formBasicConfirmPassword">
+						<Form.Label><i className="fas fa-lock"></i>Confirm your password</Form.Label>
+						<Form.Control type="password" name='confirmPassword' placeholder="Confirm password"
+							onChange={handleChangeInfo} value={UserInfo.confirmPassword} />
+					</Form.Group>
+					<div className="text-center" >
+						<Button variant='primary' type='submit' name='btnSignIn' style={{ width: 120, marginRight: 30 }}
+							disabled={isCheckAuth}>Send data</Button>
+						<Button variant='primary' type='submit' name='btnVerify' style={{ width: 120, marginRight: 30 }} onClick={handleShowModal}>
+							Verify email</Button>
+						<Button variant='primary' type='submit' name='Goback' onClick={goBack}
+							style={{ width: 120 }}> Go back</Button>
+					</div>
+				</Form>
+				<VerifyUser showModal={show} closeModal={handleCloseModal} />
+			</Section>
 		</Container>
 	)
 }
