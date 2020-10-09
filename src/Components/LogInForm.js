@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthLogInFetch } from '../Redux/action-creators';
 import styled from 'styled-components';
+import JumbotroneImg from '../Layouts/JumbotroneImg';
+
 
 
 const Section = styled.section`
@@ -21,6 +23,9 @@ const Section = styled.section`
    right: 0;
 	bottom: 0;
 	padding: 0px 10px 0px 10px;
+	color:white;
+	letter-spacing: 0.8px;
+	font-size: 17px;
 `;
 function LogInForm() {
 
@@ -28,7 +33,7 @@ function LogInForm() {
 		email: '',
 		password: '',
 	};
-	const history = useHistory();
+
 	const [UserInfo, SetUserInfo] = useState(initialState);
 	const { isCheckAuth, isAuthAccsess } = useSelector(({ auth }) => auth);
 	const dispatch = useDispatch();
@@ -39,9 +44,7 @@ function LogInForm() {
 			[e.target.name]: e.target.value,
 		})
 	}
-	const goBack = () => {
-		history.goBack();
-	}
+
 	const handleSubmitForm = (e) => {
 		e.preventDefault();
 		SetUserInfo(initialState);
@@ -52,27 +55,30 @@ function LogInForm() {
 	}
 
 	const AuthorizationForm = (
-		<Container>
-			<Section>
-				<Form onSubmit={handleSubmitForm}>
-					<Form.Group controlId="formBasicEmail" style={{ position: 'relative' }}>
-						<Form.Label> <i className="far fa-envelope"></i> Enter your email address</Form.Label>
-						<Form.Control type="email" name='email' placeholder="Enter email"
-							onChange={handleChangeInfo} value={UserInfo.email} />
-					</Form.Group>
-					<Form.Group controlId="formBasicPassword">
-						<Form.Label ><i className="fas fa-lock"></i>Enter your password</Form.Label>
-						<Form.Control type="password" name='password' placeholder="Enter password"
-							onChange={handleChangeInfo} value={UserInfo.password} />
-					</Form.Group>
-					<Button variant='primary' type='submit' name='btnlogin'
-						onClick={handleLogIn}
-						style={{ marginRight: 55, width: 120 }} disabled={isCheckAuth} >Log In</Button>
-					<Button variant='primary' type='submit' name='Goback' onClick={goBack}
-						style={{ width: 120 }}> Go back</Button>
-				</Form>
-			</Section>
-		</Container>
+		<>
+			<JumbotroneImg />
+			<Container>
+				<Section>
+					<Form onSubmit={handleSubmitForm}>
+						<Form.Group controlId="formBasicEmail" style={{ position: 'relative' }}>
+							<Form.Label> <i className="far fa-envelope"></i> Enter your email address</Form.Label>
+							<Form.Control type="email" name='email' placeholder="Enter email"
+								onChange={handleChangeInfo} value={UserInfo.email} />
+						</Form.Group>
+						<Form.Group controlId="formBasicPassword">
+							<Form.Label ><i className="fas fa-lock"></i>Enter your password</Form.Label>
+							<Form.Control type="password" name='password' placeholder="Enter password"
+								onChange={handleChangeInfo} value={UserInfo.password} />
+						</Form.Group>
+						<div className='text-center'>
+							<Button variant='primary' type='submit' name='btnlogin'
+								onClick={handleLogIn}
+								style={{ width: 120 }} disabled={isCheckAuth} >Log In</Button>
+						</div>
+					</Form>
+				</Section>
+			</Container>
+		</>
 	);
 	return isAuthAccsess ? <Redirect to='/homepage' /> : AuthorizationForm;
 }
