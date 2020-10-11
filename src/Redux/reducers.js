@@ -8,6 +8,10 @@ import {
 	AUTH_LOGIN_SUCCESS,
 	AUTH_LOGIN_FAILURE,
 
+	VERIFY_ACCOUNT_FETCH,
+	VERIFY_ACCOUNT_SUCCESS,
+	VERIFY_ACCOUNT_FAILURE,
+
 	CLOSE_MESSAGE,
 } from './action-types';
 
@@ -40,6 +44,21 @@ const AuthReduser = (prevState = {}, action) => {
 			return {
 				isCheckAuth: false,
 			}
+		case VERIFY_ACCOUNT_FETCH:
+			return {
+				isCheckVerify: true,
+			}
+		case VERIFY_ACCOUNT_SUCCESS:
+			return {
+				isCheckVerify: false,
+				// todo 
+				//accessKey: action.payload.accessKey,
+				isVerify: true,
+			}
+		case VERIFY_ACCOUNT_FAILURE:
+			return {
+				isCheckVerify: false,
+			}
 		default:
 			return state;
 	}
@@ -51,6 +70,8 @@ const message = (prevState = {}, action) => {
 		case AUTH_LOGIN_FAILURE:
 		case AUTH_SIGNIN_SUCCESS:
 		case AUTH_SIGNIN_FAILURE:
+		case VERIFY_ACCOUNT_SUCCESS:
+		case VERIFY_ACCOUNT_FAILURE:
 			return { ...action.payload.message };
 		case CLOSE_MESSAGE:
 			return {};

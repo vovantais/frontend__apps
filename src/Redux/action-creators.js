@@ -9,6 +9,10 @@ import {
 	AUTH_LOGIN_SUCCESS,
 	AUTH_LOGIN_FAILURE,
 
+	VERIFY_ACCOUNT_FETCH,
+	VERIFY_ACCOUNT_SUCCESS,
+	VERIFY_ACCOUNT_FAILURE,
+
 	CLOSE_MESSAGE,
 } from './action-types';
 
@@ -53,3 +57,19 @@ export const CloseMessage = () => ({
 	type: CLOSE_MESSAGE,
 });
 
+export const VerifyAccountFetch = (verifyPaylod) => (dispatch) => {
+	dispatch({
+		type: VERIFY_ACCOUNT_FETCH,
+	})
+	axios.post(`${API_URI}/registration/verify`, verifyPaylod)
+		.then(res => dispatch(VerifyAccountSuccess(res.data)))
+		.catch(err => dispatch(VerifyAccountFail(err.response.data)))
+}
+export const VerifyAccountSuccess = (payload) => ({
+	type: VERIFY_ACCOUNT_SUCCESS,
+	payload,
+});
+export const VerifyAccountFail = (payload) => ({
+	type: VERIFY_ACCOUNT_FAILURE,
+	payload,
+});

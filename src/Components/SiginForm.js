@@ -93,13 +93,13 @@ function SigInForm() {
 							<Form.Control type="email" name='email' placeholder="Enter email"
 								onChange={handleChangeInfo} value={UserInfo.email} />
 						</Form.Group>
-						<div><h5 style={{ color: 'red' }}>{UserInfo.passwordError}</h5></div>
+						<div><h6 style={{ color: 'red' }}>{UserInfo.passwordError}</h6></div>
 						<Form.Group controlId="formBasicPassword">
 							<Form.Label><i className="fas fa-lock"></i>Enter your password</Form.Label>
 							<Form.Control type="password" name='password' placeholder="Enter password"
 								onChange={handleChangeInfo} value={UserInfo.password} />
 						</Form.Group>
-						<div><h5 style={{ color: 'red' }}>{UserInfo.confirmPasswordError}</h5></div>
+						<div><h6 style={{ color: 'red' }}>{UserInfo.confirmPasswordError}</h6></div>
 						<Form.Group controlId="formBasicConfirmPassword">
 							<Form.Label><i className="fas fa-lock"></i>Confirm your password</Form.Label>
 							<Form.Control type="password" name='confirmPassword' placeholder="Confirm password"
@@ -108,7 +108,8 @@ function SigInForm() {
 						<div className="text-center" >
 							<Button variant='primary' type='submit' name='btnSignIn' style={{ width: 120, marginRight: 40 }}
 								disabled={isCheckAuth}>Send data</Button>
-							<Button variant='primary' type='submit' name='btnVerify' style={{ width: 120, }} onClick={handleShowModal}>
+							<Button variant='primary' type='submit' name='btnVerify' style={{ width: 120, }} onClick={handleShowModal}
+								disabled={isCheckAuth}>
 								Verify email</Button>
 						</div>
 					</Form>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { VerifyAccountFetch } from '../Redux/action-creators';
+import { Redirect } from 'react-router-dom';
 
 function VerifyUser(modal) {
 	const initialState = {
@@ -8,6 +10,9 @@ function VerifyUser(modal) {
 		accessKey: '',
 	}
 	const [verifyUser, setVerifyUser] = useState(initialState);
+	const { isCheckVerify, isVerify } = useSelector(({ auth }) => auth);
+	const dispatch = useDispatch();
+
 	const handleChangeUserInfo = (e) => {
 		console.log(e.target.value);
 		setVerifyUser({
@@ -16,11 +21,13 @@ function VerifyUser(modal) {
 		})
 	}
 	const handleSubmitForm = (e) => {
-		//todo : отпрака данных на сервер 
 		e.preventDefault();
 		setVerifyUser(initialState);
 	}
-	return (
+	const handleVarify = () => {
+		dispatch(VerifyAccountFetch({ ...verifyUser }));
+	}
+	const ModalVerifyUser = (
 		<Modal show={modal.showModal} onHide={modal.closeModal} style={{ marginTop: 20, }} >
 			<Modal.Header closeButton>
 				<Modal.Title>Verify email address</Modal.Title>
@@ -38,13 +45,14 @@ function VerifyUser(modal) {
 							onChange={handleChangeUserInfo} />
 					</Form.Group>
 					<div className="text-center" >
-						<Button variant='primary' type='submit' name='btnAccessKey'
-							style={{ width: 120 }}>Send key</Button>
+						<Button variant='primary' type='submit' name='btnAccessKey' disabled={isCheckVerify}
+							style={{ width: 120 }} onClick={handleVarify}>Send key</Button>
 					</div>
 				</Form>
 			</Modal.Body>
 		</Modal >
-	)
+	);
+	return isVerify ? <Redirect to='/login' /> : ModalVerifyUser;
 }
 
 export default VerifyUser;
