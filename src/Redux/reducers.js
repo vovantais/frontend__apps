@@ -51,8 +51,6 @@ const AuthReduser = (prevState = {}, action) => {
 		case VERIFY_ACCOUNT_SUCCESS:
 			return {
 				isCheckVerify: false,
-				// todo 
-				//accessKey: action.payload.accessKey,
 				isVerify: true,
 			}
 		case VERIFY_ACCOUNT_FAILURE:

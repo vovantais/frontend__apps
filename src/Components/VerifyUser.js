@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 
 function VerifyUser(modal) {
 	const initialState = {
-		emailAddress: '',
+		email: '',
 		accessKey: '',
 	}
 	const [verifyUser, setVerifyUser] = useState(initialState);
@@ -36,7 +36,7 @@ function VerifyUser(modal) {
 				<Form onSubmit={handleSubmitForm}>
 					<Form.Group controlId="formBasicEmailAddress">
 						<Form.Label> <i className="far fa-envelope"></i> Enter your email address</Form.Label>
-						<Form.Control type="email" name='emailAddress' placeholder="Enter email"
+						<Form.Control type="email" name='email' placeholder="Enter email"
 							onChange={handleChangeUserInfo} />
 					</Form.Group>
 					<Form.Group controlId="formBasicAccessKey">
