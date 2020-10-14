@@ -21,6 +21,7 @@ const Section = styled.section`
    left: 0;
    right: 0;
 	bottom: 0;
+	margin:20px 0px 0px 0px ;
 	padding: 0px 10px 0px 10px;
 	color:white;
 	letter-spacing: 0.8px;
@@ -94,7 +95,7 @@ function SigInForm() {
 								onChange={handleChangeInfo} value={UserInfo.email} />
 						</Form.Group>
 						<div><h6 style={{ color: 'red' }}>{UserInfo.passwordError}</h6></div>
-						<Form.Group controlId="formBasicPassword">
+						<Form.Group controlId="formBasicPassword" className={validate ? 'isdone' : 'pending'}>
 							<Form.Label><i className="fas fa-lock"></i>Enter your password</Form.Label>
 							<Form.Control type="password" name='password' placeholder="Enter password"
 								onChange={handleChangeInfo} value={UserInfo.password} />
@@ -103,12 +104,14 @@ function SigInForm() {
 						<Form.Group controlId="formBasicConfirmPassword">
 							<Form.Label><i className="fas fa-lock"></i>Confirm your password</Form.Label>
 							<Form.Control type="password" name='confirmPassword' placeholder="Confirm password"
-								onChange={handleChangeInfo} value={UserInfo.confirmPassword} />
+								onChange={handleChangeInfo} value={UserInfo.confirmPassword} className='validate' />
 						</Form.Group>
 						<div className="text-center" >
-							<Button variant='primary' type='submit' name='btnSignIn' style={{ width: 120, marginRight: 40 }}
+							<Button variant="info" className='btn-active' type='submit' name='btnSignIn'
+								style={{ width: 120, marginRight: 40 }}
 								disabled={isCheckAuth}>Send data</Button>
-							<Button variant='primary' type='submit' name='btnVerify' style={{ width: 120, }} onClick={handleShowModal}
+							<Button variant="info" className='btn-active' type='submit' name='btnVerify'
+								style={{ width: 120, }} onClick={handleShowModal}
 								disabled={isCheckAuth}>
 								Verify email</Button>
 						</div>

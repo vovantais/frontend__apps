@@ -201,14 +201,50 @@ h6 {
 	letter-spacing: 1.2px;
 	display: flex;
 	opacity: 0.8;
-	transition: 0.3s linear 0.1s;
+	transition: 0.4s linear 0.1s;
 	z-index: 10;
+	text-transform: uppercase;
 }
 .links:hover {
 	color: gold;
 	opacity: 1;
 }
-
+.nav-links {
+	display: flex;
+	margin: 0px 30px 0px 30px;
+	letter-spacing: 1.2px;
+	font-size: 18px;
+	color: #17a2b8;
+	transition: 0.4s linear 0.1s;
+	text-transform: uppercase;
+}
+.nav-links:hover {
+	color: wheat;
+}
+.btn-active {
+	box-shadow: 0 4px 0 #0c7080;
+	position: relative;
+	top: 0;
+}
+.btn-active:active {
+	top: 3px;
+	box-shadow: 0 2px 0 #109db3;
+}
+.btn-log-Out {
+	box-shadow: 0 3px 0 #109db3;
+	position: relative;
+	top: 0;
+}
+.btn-log-Out:active {
+	top: 3px;
+	box-shadow: 0 2px 0 #109db3;
+}
+@media (max-width: 768px) {
+	.nav-links {
+		margin: 0px 10px 0px 10px;
+		font-size: 16px;
+	}
+}
 @media (max-width: 450px) {
 	.links {
 		margin: 0px 10px 0px 10px;
