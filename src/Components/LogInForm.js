@@ -18,10 +18,11 @@ const Section = styled.section`
    justify-content: center;
    overflow: auto;
    position: fixed;
-   top: 0;
+   top: 0px;
    left: 0;
    right: 0;
 	bottom: 0;
+	margin:20px 0px 0px 0px ;
 	padding: 0px 10px 0px 10px;
 	color:white;
 	letter-spacing: 0.8px;
@@ -71,7 +72,7 @@ function LogInForm() {
 								onChange={handleChangeInfo} value={UserInfo.password} />
 						</Form.Group>
 						<div className='text-center'>
-							<Button variant='primary' type='submit' name='btnlogin'
+							<Button variant='info' className='btn-active' type='submit' name='btnlogin'
 								onClick={handleLogIn}
 								style={{ width: 120 }} disabled={isCheckAuth} >Log In</Button>
 						</div>

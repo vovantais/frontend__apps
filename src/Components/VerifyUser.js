@@ -45,7 +45,7 @@ function VerifyUser(modal) {
 							onChange={handleChangeUserInfo} />
 					</Form.Group>
 					<div className="text-center" >
-						<Button variant='primary' type='submit' name='btnAccessKey' disabled={isCheckVerify}
+						<Button variant="info" className='btn-active' type='submit' name='btnAccessKey' disabled={isCheckVerify}
 							style={{ width: 120 }} onClick={handleVarify}>Send key</Button>
 					</div>
 				</Form>

@@ -9,11 +9,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { CloseMessage } from '../Redux/action-creators';
 import LogInForm from '../Components/LogInForm';
-import HomePage from '../Layouts/HomePage';
+import HomePage from '../Components/HomePage';
 import SigInForm from '../Components/SiginForm';
 import AuthPage from '../Layouts/AuthPage';
 import NotFoundPage from '../Layouts/NotFoundPage';
 import NavAuth from '../Layouts/NavAuth';
+import SchedulepPage from '../Components/SchedulepPage';
+import IncomePage from '../Components/IncomePage';
+import ExpensesPage from '../Components/ExpensesPage';
+import NavbarCommon from '../Layouts/NavbarCommon';
 
 function Wrapper() {
 	const { text, success } = useSelector(({ message }) => message);
@@ -36,6 +40,9 @@ function Wrapper() {
 				pauseOnHover
 			/>
 			<Router>
+				{/* // todo remove duplicate routes  */}
+				{/* <NavbarCommon /> */}
+				{/* <NavAuth /> */}
 				<Switch>
 					<Route exact path='/'>
 						<NavAuth />
@@ -50,7 +57,20 @@ function Wrapper() {
 						<SigInForm />
 					</Route>
 					<Route exact path='/homepage'>
+						<NavbarCommon />
 						<HomePage />
+					</Route>
+					<Route exact path='/schedule'>
+						<NavbarCommon />
+						<SchedulepPage />
+					</Route>
+					<Route exact path='/income'>
+						<NavbarCommon />
+						<IncomePage />
+					</Route>
+					<Route exact path='/expenses'>
+						<NavbarCommon />
+						<ExpensesPage />
 					</Route>
 					<Route>
 						<NotFoundPage path='*' />
