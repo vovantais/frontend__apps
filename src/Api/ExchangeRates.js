@@ -30,7 +30,7 @@ function ExchangeRates() {
 	};
 	const [infoCurs, setInfoCurs] = useState(initialState);
 	useEffect(() => {
-		const request = fetch(API_EXCHANGE_RATES)
+		fetch(API_EXCHANGE_RATES)
 			.then(res => res.json())
 			.then(
 				(result) => {

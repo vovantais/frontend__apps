@@ -32,7 +32,7 @@ function Jumbotron() {
 			<Jombo fluid className='jumbo'>
 				<div className='overlay'></div>
 				<div className="mb-wrap mb-style">
-					<div className="mb-thumb "><img className='Franklin' src={franclin} /></div>
+					<div className="mb-thumb "><img className='Franklin' src={franclin} alt="franclin" /></div>
 					<blockquote>
 						<p>Thrift. - Spend money only on what benefits me or others, that is, do not waste anything.</p>
 					</blockquote>
@@ -41,7 +41,7 @@ function Jumbotron() {
 					</div>
 				</div>
 				<div className="mb-wrap mb-style">
-					<div className="mb-thumb "><img className='Buffett' src={buffet} /></div>
+					<div className="mb-thumb "><img className='Buffett' src={buffet} alt="buffet" /></div>
 					<blockquote>
 						<p>The most successful people are those who do what they love.</p>
 					</blockquote>
@@ -50,7 +50,7 @@ function Jumbotron() {
 					</div>
 				</div>
 				<div className="mb-wrap mb-style">
-					<div className="mb-thumb "><img className='Buffett' src={geyts} /></div>
+					<div className="mb-thumb "><img className='Gates' src={geyts} alt="geyts" /></div>
 					<blockquote>
 						<p>When you have a good idea, act immediately.</p>
 					</blockquote>

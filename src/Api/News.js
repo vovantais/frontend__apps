@@ -13,9 +13,6 @@ const Section = styled.section`
 		text-transform: uppercase;
 		letter-spacing: 2.2px;
 	}
-	.col-md-8{
-		margin-left: 50px;
-	}
 	`;
 function News() {
 	const initialState = {
@@ -23,41 +20,43 @@ function News() {
 		isLoaded: false,
 		items: [],
 	};
-	const [infoCurs, setInfoCurs] = useState(initialState);
+	const [news, setNews] = useState(initialState);
 	useEffect(() => {
-		const request = fetch(API_TO_CONNECT_NEWS)
+		fetch(API_TO_CONNECT_NEWS)
 			.then(res => res.json())
 			.then(
 				(result) => {
-					setInfoCurs({
+					setNews({
 						isLoaded: true,
 						items: result.articles,
 					});
 				})
 			.catch((error) => {
-				setInfoCurs({
+				setNews({
 					isLoaded: true,
 					error,
 				});
 			})
 	}, [])
-	const { error, isLoaded, items } = infoCurs;
-	console.log(error);
-	const CursInfo = (
+	const { error, isLoaded, items } = news;
+	const getNews = (
 		<Section>
 			<div className=" list ml-auto" >
 				<Jombo className='jumbo'>
 					<h3 className='news-title'>top business news</h3>
 				</Jombo>
 				{
-					items.map(item => {
+					items.map((item, index) => {
+						if (item.content == null || item.description == null || item.author == null) {
+							return;
+						}
 						return (
-							<Container fluid='lg'>
-								<div div div className='row NewsGrid'>
+							<Container className='lg'>
+								<div className='row NewsGrid' key={index}>
 									<div className='col-md-3'>
-										<img src={item.urlToImage} alt='News thumbnail' width={300} height={220} className='rounded' />
+										<img src={item.urlToImage} alt='News thumbnail' width={260} height={210} className='rounded' />
 									</div>
-									<div className="col-md-8 " key={item.name} >
+									<div className="col-md-9">
 										<h3> Title : {item.title} </h3><br />
 										<h5> Description  : {item.description}</h5>
 										<p> Content : {item.content.length > 200 ? item.content.slice(0, 200) : item.content}</p>
@@ -72,14 +71,13 @@ function News() {
 				}
 			</div >
 		</Section >
-
 	);
 	if (error) {
 		return <p> Error {error.message}</p>
 	} else if (!isLoaded) {
-		return <p>Loading ...</p>
+		return <h3 className='text-center'> News Loading ... </h3>
 	} else {
-		return CursInfo;
+		return getNews;
 	}
 }
 
