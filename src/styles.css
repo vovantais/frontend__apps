@@ -1,83 +1,83 @@
 /*Обнуление*/
 /* * ================================================================================== */
 * {
-   padding: 0;
-   margin: 0;
-   border: 0;
+	padding: 0;
+	margin: 0;
+	border: 0;
 }
 
 *,
 *:before,
 *:after {
-   -webkit-box-sizing: border-box;
-   box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 :focus,
 :active {
-   outline: none;
+	outline: none;
 }
 
 a:focus,
 a:active {
-   outline: none;
-   letter-spacing: 1.2px;
+	outline: none;
+	letter-spacing: 1.2px;
 }
 
 nav,
 footer,
 header,
 aside {
-   display: block;
+	display: block;
 }
 
 html,
 body {
-   height: 100%;
-   width: 100%;
-   font-family: inherit;
-   font-size: 100%;
-   line-height: 1;
-   font-size: 14px;
-   -ms-text-size-adjust: 100%;
-   -moz-text-size-adjust: 100%;
-   -webkit-text-size-adjust: 100%;
+	height: 100%;
+	width: 100%;
+	font-family: inherit;
+	font-size: 100%;
+	line-height: 1;
+	font-size: 14px;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
 }
 
 input,
 button,
 textarea {
-   font-family: inherit;
+	font-family: inherit;
 }
 
 input::-ms-clear {
-   display: none;
+	display: none;
 }
 
 button {
-   cursor: pointer;
+	cursor: pointer;
 }
 
 button::-moz-focus-inner {
-   padding: 0;
-   border: 0;
+	padding: 0;
+	border: 0;
 }
 
 a,
 a:visited {
-   text-decoration: none;
+	text-decoration: none;
 }
 
 a:hover {
-   text-decoration: none;
+	text-decoration: none;
 }
 
 ul li {
-   list-style: none;
+	list-style: none;
 }
 
 img {
-   vertical-align: top;
+	vertical-align: top;
 }
 
 h1,
@@ -86,201 +86,210 @@ h3,
 h4,
 h5,
 h6 {
-   font-size: inherit;
-   font-weight: inherit;
+	font-size: inherit;
+	font-weight: inherit;
 }
 /* * ================================================================================== */
 .fas,
 .fas {
-   margin-right: 5px;
+	margin-right: 5px;
 }
 .text-center {
-   margin: 20px 0px 20px 0px;
+	margin: 20px 0px 20px 0px;
 }
 .mb-style {
-   width: 500px;
+	width: 500px;
 }
 .mb-wrap {
-   width: 300px;
-   margin: 20px auto;
-   padding: 20px;
-   position: relative;
+	width: 300px;
+	margin: 20px auto;
+	padding: 20px;
+	position: relative;
 }
 .mb-wrap blockquote {
-   position: relative;
+	position: relative;
 }
 .mb-style blockquote {
-   background: #fff;
-   padding: 30px;
-   border-radius: 5px;
-   box-shadow: inset 0 3px 0 gold, -5px -4px 25px rgba(0, 0, 0, 0.3);
+	background: #fff;
+	padding: 30px;
+	border-radius: 5px;
+	box-shadow: inset 0 3px 0 gold, -5px -4px 25px rgba(0, 0, 0, 0.3);
 }
 .mb-style blockquote:after,
 .mb-style blockquote:before {
-   top: 100%;
-   border: solid transparent;
-   content: " ";
-   height: 0;
-   width: 0;
-   position: absolute;
-   pointer-events: none;
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
 }
 
 .mb-style blockquote:after {
-   border-top-color: #fff;
-   border-width: 10px;
-   left: 65%;
-   margin-left: -10px;
+	border-top-color: #fff;
+	border-width: 10px;
+	left: 65%;
+	margin-left: -10px;
 }
 
 .mb-style blockquote:before {
-   border-top-color: rgba(0, 0, 0, 0.01);
-   border-width: 11px;
-   left: 65%;
-   margin-left: -11px;
+	border-top-color: rgba(0, 0, 0, 0.01);
+	border-width: 11px;
+	left: 65%;
+	margin-left: -11px;
 }
 .mb-style blockquote p {
-   font-family: "Alegreya", serif;
-   font-size: 24px;
-   color: #b4b4b4;
-   font-weight: 400;
-   line-height: 40px;
-   font-style: italic;
-   text-indent: 100px;
-   position: relative;
+	font-family: "Alegreya", serif;
+	font-size: 24px;
+	color: #b4b4b4;
+	font-weight: 400;
+	line-height: 40px;
+	font-style: italic;
+	text-indent: 100px;
+	position: relative;
 }
 .mb-style blockquote p:before {
-   content: "\201C";
-   font-family: serif;
-   font-style: normal;
-   font-weight: 700;
-   position: absolute;
-   font-size: 175px;
-   top: 0px;
-   left: -105px;
-   color: rgb(131, 125, 125);
-   text-shadow: 7px 14px 10px rgba(0, 0, 0, 0.1);
+	content: "\201C";
+	font-family: serif;
+	font-style: normal;
+	font-weight: 700;
+	position: absolute;
+	font-size: 175px;
+	top: 0px;
+	left: -105px;
+	color: rgb(131, 125, 125);
+	text-shadow: 7px 14px 10px rgba(0, 0, 0, 0.1);
 }
 .mb-style .mb-attribution {
-   text-align: right;
-   padding: 20px 100px 20px 20px;
-   position: relative;
+	text-align: right;
+	padding: 20px 100px 20px 20px;
+	position: relative;
 }
 .mb-style .mb-attribution {
-   text-align: right;
-   padding: 20px 100px 20px 20px;
-   position: relative;
+	text-align: right;
+	padding: 20px 100px 20px 20px;
+	position: relative;
 }
 .Franklin,
 .Buffett,
 .Gates {
-   display: block;
-   width: 80px;
-   height: 80px;
-   border: 5px solid rgb(233, 230, 230);
-   border-radius: 50%;
-   position: absolute;
-   object-fit: cover;
-   right: 10px;
-   bottom: 5px;
-   box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.5), 0 2px 3px rgba(0, 0, 0, 0.6);
+	display: block;
+	width: 80px;
+	height: 80px;
+	border: 5px solid rgb(233, 230, 230);
+	border-radius: 50%;
+	position: absolute;
+	object-fit: cover;
+	right: 10px;
+	bottom: 5px;
+	box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.5), 0 2px 3px rgba(0, 0, 0, 0.6);
 }
 .mb-style .mb-author {
-   font-family: "Alegreya SC", serif;
-   font-weight: 700;
-   font-size: 18px;
-   letter-spacing: 1px;
-   color: rgb(223, 219, 19);
-   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+	font-family: "Alegreya SC", serif;
+	font-weight: 700;
+	font-size: 18px;
+	letter-spacing: 1px;
+	color: rgb(223, 219, 19);
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+.img-logo {
+	display: block;
+	width: 80px;
+	height: 80px;
+	margin: 20px 0px 20px 0px;
+	opacity: 1;
+	z-index: 99;
+	cursor: pointer;
 }
 .links {
-   margin: 0px 30px 0px 30px;
-   color: gold;
-   font-weight: bold;
-   font-size: 20px;
-   letter-spacing: 1.2px;
-   display: flex;
-   opacity: 0.8;
-   transition: 0.4s linear 0.1s;
-   z-index: 10;
-   text-transform: uppercase;
+	margin: 0px 30px 0px 30px;
+	color: gold;
+	font-weight: bold;
+	font-size: 20px;
+	letter-spacing: 1.2px;
+	display: flex;
+	opacity: 0.8;
+	transition: 0.4s linear 0.1s;
+	z-index: 10;
+	text-transform: uppercase;
 }
 .links:hover {
-   color: gold;
-   opacity: 1;
+	color: gold;
+	opacity: 1;
 }
 .navbar-wrapper {
-   min-height: 70px;
+	min-height: 70px;
 }
 .nav-common {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin: 0 auto;
-   text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	text-align: center;
 }
 .nav-links {
-   display: flex;
-   margin: 0px 30px 0px 30px;
-   letter-spacing: 1.2px;
-   font-size: 20px;
-   color: #17a2b8;
-   transition: 0.4s linear 0.1s;
-   text-transform: uppercase;
+	display: flex;
+	margin: 0px 22px 0px 22px;
+	letter-spacing: 1.2px;
+	font-size: 20px;
+	color: #17a2b8;
+	transition: 0.4s linear 0.1s;
+	text-transform: uppercase;
 }
 .nav-links:hover {
-   color: wheat;
+	color: wheat;
 }
 .btn-active {
-   box-shadow: 0 4px 0 #0c7080;
-   position: relative;
-   top: 0;
+	box-shadow: 0 4px 0 #0c7080;
+	position: relative;
+	top: 0;
 }
 .btn-active:active {
-   top: 3px;
-   box-shadow: 0 2px 0 #3d5558;
+	top: 3px;
+	box-shadow: 0 2px 0 #3d5558;
 }
 .btn-log-Out {
-   box-shadow: 0 3px 0 #109db3;
-   position: relative;
-   top: 0;
-   font-size: 33px;
+	box-shadow: 0 3px 0 #109db3;
+	position: relative;
+	top: 0;
+	font-size: 33px;
 }
 .btn-log-Out:active {
-   top: 3px;
-   box-shadow: 0 2px 0 #109db3;
+	top: 3px;
+	box-shadow: 0 2px 0 #109db3;
 }
+.NewsGrid {
+	margin: 10px;
+	border: 1px solid lightgray;
+	padding: 10px;
+}
+
 @media (max-width: 768px) {
-   .nav-links {
-      margin: 0px 15px 0px 15px;
-      font-size: 18px;
-   }
-}
-@media (max-width: 550px) {
-   .navbar-wrapper {
-      position: relative;
-   }
-   .nav-common {
-      display: flex;
-      flex-direction: column;
-      position: relative;
-   }
-   .nav-links {
-      margin: 5px 15px 20px 15px;
-      font-size: 18px;
-   }
-   .btn-log-Out {
-      display: flex;
-      position: absolute;
-      top: 8px;
-      right: 8px;
-   }
-   .btn-log-Out:active {
-      top: 12px;
-   }
+	.navbar-wrapper {
+		position: relative;
+	}
+	.nav-common {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+	}
+	.nav-links {
+		margin: 10px 15px 20px 15px;
+		font-size: 18px;
+	}
+	.btn-log-Out {
+		display: flex;
+		position: absolute;
+		top: 8px;
+		right: 8px;
+	}
+	.btn-log-Out:active {
+		top: 12px;
+	}
 }
 @media (max-width: 450px) {
-   .links {
-      margin: 0px 10px 0px 10px;
-   }
+	.links {
+		margin: 0px 10px 0px 10px;
+	}
 }
