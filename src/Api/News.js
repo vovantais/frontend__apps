@@ -41,7 +41,7 @@ function News() {
 	const { error, isLoaded, items } = news;
 	const getNews = (
 		<Section>
-			<div className=" list ml-auto" >
+			<div className=" list ml-auto " >
 				<Jombo className='jumbo'>
 					<h3 className='news-title'>top business news</h3>
 				</Jombo>

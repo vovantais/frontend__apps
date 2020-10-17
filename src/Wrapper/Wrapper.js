@@ -11,6 +11,7 @@ import { CloseMessage } from '../Redux/action-creators';
 import LogInForm from '../Components/LogInForm';
 import HomePage from '../Components/HomePage';
 import SigInForm from '../Components/SiginForm';
+import PrivateRoute from '../Components/PrivateRoute';
 import AuthPage from '../Layouts/AuthPage';
 import NotFoundPage from '../Layouts/NotFoundPage';
 import NavAuth from '../Layouts/NavAuth';
@@ -56,18 +57,34 @@ function Wrapper() {
 						<NavAuth />
 						<SigInForm />
 					</Route>
+					{/* <PrivateRoute exact path='/homepage'>
+						<NavbarCommon />
+						<HomePage />
+					</PrivateRoute> */}
 					<Route exact path='/homepage'>
 						<NavbarCommon />
 						<HomePage />
 					</Route>
+					{/* <PrivateRoute exact path='/schedule'>
+						<NavbarCommon />
+						<SchedulepPage />
+					</PrivateRoute> */}
 					<Route exact path='/schedule'>
 						<NavbarCommon />
 						<SchedulepPage />
 					</Route>
+					{/* <PrivateRoute exact path='/income'>
+						<NavbarCommon />
+						<IncomePage />
+					</PrivateRoute> */}
 					<Route exact path='/income'>
 						<NavbarCommon />
 						<IncomePage />
 					</Route>
+					{/* <PrivateRoute exact path='/expenses'>
+						<NavbarCommon />
+						<ExpensesPage />
+					</PrivateRoute> */}
 					<Route exact path='/expenses'>
 						<NavbarCommon />
 						<ExpensesPage />

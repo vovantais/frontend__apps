@@ -26,7 +26,7 @@ const AuthReduser = (prevState = {}, action) => {
 			return {
 				isCheckAuth: false,
 				token: action.payload.token,
-				isAuthAccsess: true,
+				isAuthenticated: true,
 			}
 		case AUTH_LOGIN_FAILURE:
 			return {

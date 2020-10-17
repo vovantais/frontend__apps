@@ -38,7 +38,7 @@ function SigInForm() {
 	};
 	const [UserInfo, SetUserInfo] = useState(initialState);
 	const [show, setShow] = useState(false);
-	const { isCheckAuth, isAuthAccsess } = useSelector(({ auth }) => auth);
+	const { isCheckAuth } = useSelector(({ auth }) => auth);
 	const dispatch = useDispatch();
 
 
@@ -92,26 +92,26 @@ function SigInForm() {
 						<Form.Group controlId="formBasicEmail">
 							<Form.Label><i className="far fa-envelope"></i> Enter your email address</Form.Label>
 							<Form.Control type="email" name='email' placeholder="Enter email"
-								onChange={handleChangeInfo} value={UserInfo.email} />
+								onChange={handleChangeInfo} value={UserInfo.email} tabIndex='1' required />
 						</Form.Group>
 						<div><h6 style={{ color: 'red' }}>{UserInfo.passwordError}</h6></div>
 						<Form.Group controlId="formBasicPassword" className={validate ? 'isdone' : 'pending'}>
 							<Form.Label><i className="fas fa-lock"></i>Enter your password</Form.Label>
 							<Form.Control type="password" name='password' placeholder="Enter password"
-								onChange={handleChangeInfo} value={UserInfo.password} />
+								onChange={handleChangeInfo} value={UserInfo.password} tabIndex='2' required />
 						</Form.Group>
 						<div><h6 style={{ color: 'red' }}>{UserInfo.confirmPasswordError}</h6></div>
 						<Form.Group controlId="formBasicConfirmPassword">
 							<Form.Label><i className="fas fa-lock"></i>Confirm your password</Form.Label>
 							<Form.Control type="password" name='confirmPassword' placeholder="Confirm password"
-								onChange={handleChangeInfo} value={UserInfo.confirmPassword} className='validate' />
+								onChange={handleChangeInfo} value={UserInfo.confirmPassword} className='validate' tabIndex='3' required />
 						</Form.Group>
 						<div className="text-center" >
 							<Button variant="info" className='btn-active' type='submit' name='btnSignIn'
-								style={{ width: 120, marginRight: 40 }}
+								style={{ width: 120, marginRight: 40 }} tabIndex='4'
 								disabled={isCheckAuth}>Send data</Button>
 							<Button variant="info" className='btn-active' type='submit' name='btnVerify'
-								style={{ width: 120, }} onClick={handleShowModal}
+								style={{ width: 120, }} onClick={handleShowModal} tabIndex='5'
 								disabled={isCheckAuth}>
 								Verify email</Button>
 						</div>

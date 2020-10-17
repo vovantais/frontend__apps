@@ -37,16 +37,16 @@ function VerifyUser(modal) {
 					<Form.Group controlId="formBasicEmailAddress">
 						<Form.Label> <i className="far fa-envelope"></i> Enter your email address</Form.Label>
 						<Form.Control type="email" name='email' placeholder="Enter email"
-							onChange={handleChangeUserInfo} />
+							onChange={handleChangeUserInfo} tabIndex='1' required />
 					</Form.Group>
 					<Form.Group controlId="formBasicAccessKey">
 						<Form.Label ><i className="fas fa-key"></i>Enter your access key that was sent to your email</Form.Label>
 						<Form.Control type="password" name='accessKey' placeholder="Enter access key"
-							onChange={handleChangeUserInfo} />
+							onChange={handleChangeUserInfo} tabIndex='2' required />
 					</Form.Group>
 					<div className="text-center" >
 						<Button variant="info" className='btn-active' type='submit' name='btnAccessKey' disabled={isCheckVerify}
-							style={{ width: 120 }} onClick={handleVarify}>Send key</Button>
+							style={{ width: 120 }} onClick={handleVarify} tabIndex='3'>Send key</Button>
 					</div>
 				</Form>
 			</Modal.Body>

@@ -6,8 +6,6 @@ import { AuthLogInFetch } from '../Redux/action-creators';
 import styled from 'styled-components';
 import JumbotroneImg from '../Layouts/JumbotroneImg';
 
-
-
 const Section = styled.section`
 	width: 100%;
    height: 100%;
@@ -36,7 +34,7 @@ function LogInForm() {
 	};
 
 	const [UserInfo, SetUserInfo] = useState(initialState);
-	const { isCheckAuth, isAuthAccsess } = useSelector(({ auth }) => auth);
+	const { isCheckAuth, isAuthenticated } = useSelector(({ auth }) => auth);
 	const dispatch = useDispatch();
 
 	const handleChangeInfo = (e) => {
@@ -64,16 +62,16 @@ function LogInForm() {
 						<Form.Group controlId="formBasicEmail" style={{ position: 'relative' }}>
 							<Form.Label> <i className="far fa-envelope"></i> Enter your email address</Form.Label>
 							<Form.Control type="email" name='email' placeholder="Enter email"
-								onChange={handleChangeInfo} value={UserInfo.email} />
+								onChange={handleChangeInfo} value={UserInfo.email} required tabIndex='1' />
 						</Form.Group>
 						<Form.Group controlId="formBasicPassword">
 							<Form.Label ><i className="fas fa-lock"></i>Enter your password</Form.Label>
 							<Form.Control type="password" name='password' placeholder="Enter password"
-								onChange={handleChangeInfo} value={UserInfo.password} />
+								onChange={handleChangeInfo} value={UserInfo.password} required tabIndex='2' />
 						</Form.Group>
 						<div className='text-center'>
 							<Button variant='info' className='btn-active' type='submit' name='btnlogin'
-								onClick={handleLogIn}
+								onClick={handleLogIn} tabIndex='3'
 								style={{ width: 120 }} disabled={isCheckAuth} >Log In</Button>
 						</div>
 					</Form>
@@ -81,7 +79,7 @@ function LogInForm() {
 			</Container>
 		</>
 	);
-	return isAuthAccsess ? <Redirect to='/homepage' /> : AuthorizationForm;
+	return isAuthenticated ? <Redirect to='/homepage' /> : AuthorizationForm;
 }
 
 export default LogInForm;
