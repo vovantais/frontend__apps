@@ -17,7 +17,7 @@ function NavbarCommon() {
 					<Nav className="nav-common" >
 						<NavLink className='nav-links' to="/homepage">Home</NavLink>
 						<NavLink className='nav-links' to="/schedule">Schedule</NavLink>
-						<a href='#' className='links'><img className='img-logo' src={logo} alt="logo" /></a>
+						<a href='#' className='links-logo'><img className='img-logo' src={logo} alt="logo" /></a>
 						<NavLink className='nav-links' to="/income">Income</NavLink>
 						<NavLink className='nav-links' to="/expenses">Expenses</NavLink>
 					</Nav>

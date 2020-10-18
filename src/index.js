@@ -7,7 +7,7 @@ import "./styles.css";
 
 
 ReactDOM.render(
-	<Provider {...{ store }}>
+	<Provider {...{ store }} >
 		<App />
 	</Provider>,
 	document.getElementById("root"),

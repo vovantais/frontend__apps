@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { VerifyAccountFetch } from '../Redux/action-creators';
+import { VerifyAccountFetch } from '../Redux/auth/action-creators';
 import { Redirect } from 'react-router-dom';
 
 function VerifyUser(modal) {
@@ -10,7 +10,7 @@ function VerifyUser(modal) {
 		accessKey: '',
 	}
 	const [verifyUser, setVerifyUser] = useState(initialState);
-	const { isCheckVerify, isVerify } = useSelector(({ auth }) => auth);
+	const { isCheckVerify, isVerify } = useSelector(({ auth }) => auth.auth);
 	const dispatch = useDispatch();
 
 	const handleChangeUserInfo = (e) => {

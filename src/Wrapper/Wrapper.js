@@ -7,7 +7,7 @@ import {
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { CloseMessage } from '../Redux/action-creators';
+import { AuthMessage } from '../Redux/auth/action-creators';
 import LogInForm from '../Components/LogInForm';
 import HomePage from '../Components/HomePage';
 import SigInForm from '../Components/SiginForm';
@@ -21,11 +21,12 @@ import ExpensesPage from '../Components/ExpensesPage';
 import NavbarCommon from '../Layouts/NavbarCommon';
 
 function Wrapper() {
-	const { text, success } = useSelector(({ message }) => message);
+
+	const { text, success } = useSelector(({ auth }) => auth.message);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		toast[success ? 'success' : 'error'](text, { onClose: dispatch(CloseMessage()) })
+		toast[success ? 'success' : 'error'](text, { onClose: dispatch(AuthMessage()) })
 	}, [text]);
 	return (
 		<>

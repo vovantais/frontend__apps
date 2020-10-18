@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { AuthLogInFetch } from '../Redux/action-creators';
+import { AuthLogInFetch } from '../Redux/auth/action-creators';
 import styled from 'styled-components';
 import JumbotroneImg from '../Layouts/JumbotroneImg';
 
@@ -34,14 +34,14 @@ function LogInForm() {
 	};
 
 	const [UserInfo, SetUserInfo] = useState(initialState);
-	const { isCheckAuth, isAuthenticated } = useSelector(({ auth }) => auth);
+	const { isCheckAuth, isAuthenticated } = useSelector(({ auth }) => auth.auth);
 	const dispatch = useDispatch();
 
 	const handleChangeInfo = (e) => {
 		SetUserInfo({
 			...UserInfo,
 			[e.target.name]: e.target.value,
-		})
+		});
 	}
 
 	const handleSubmitForm = (e) => {

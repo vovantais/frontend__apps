@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
-import reducer from './reducers';
+import reducers from './mainRedusers';
 
 const composeEnhancers =
 	typeof window === 'object' &&
@@ -15,6 +15,6 @@ const enhancer = composeEnhancers(
 );
 
 export default createStore(
-	reducer,
+	reducers,
 	enhancer
 );

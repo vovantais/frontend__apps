@@ -51,8 +51,8 @@ function News() {
 							return;
 						}
 						return (
-							<Container className='lg'>
-								<div className='row NewsGrid' key={index}>
+							<Container className='lg' key={index}>
+								<div className='row NewsGrid'>
 									<div className='col-md-3'>
 										<img src={item.urlToImage} alt='News thumbnail' width={260} height={210} className='rounded' />
 									</div>

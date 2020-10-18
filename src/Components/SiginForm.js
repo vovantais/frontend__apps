@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { AuthSignInFetch } from '../Redux/action-creators';
+import { AuthSignInFetch } from '../Redux/auth/action-creators';
 import VerifyUser from './VerifyUser';
 import styled from 'styled-components';
 import JumbotroneImg from '../Layouts/JumbotroneImg';
@@ -38,7 +38,7 @@ function SigInForm() {
 	};
 	const [UserInfo, SetUserInfo] = useState(initialState);
 	const [show, setShow] = useState(false);
-	const { isCheckAuth } = useSelector(({ auth }) => auth);
+	const { isCheckAuth } = useSelector(({ auth }) => auth.auth);
 	const dispatch = useDispatch();
 
 
