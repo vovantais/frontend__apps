@@ -1,24 +1,21 @@
-import React from 'react'
-import { useSelector } from "react-redux";
-
+import React, { useEffect } from 'react';
+// import { useSelector } from "react-redux";
+import axios from 'axios';
+import { API_URI } from '../Consts/consts';
 function SchedulepPage() {
-	const income = useSelector(({ budget }) => budget.income);
-	const expenses = useSelector(({ budget }) => budget.expenses);
-	//Todo вывод всего + разобраться с сервером 
+	// const income = useSelector(({ budget }) => budget.income);
+	// const expenses = useSelector(({ budget }) => budget.expenses);
+
+	useEffect(() => {
+		axios.get(`${API_URI}/income`, {
+			headers: {
+				'Authorization': auth && auth.token,
+			},
+		})
+	}, [])
 	return (
 		<div>
-			<ul>
-				<h3>Income</h3>
-				{
-					income.map((item, index) => {
-						return (
-							<li key={index}>
-								{item}
-							</li>
-						)
-					})
-				}
-			</ul>
+			INOCOME
 		</div>
 	)
 }

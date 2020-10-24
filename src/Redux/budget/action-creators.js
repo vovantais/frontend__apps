@@ -69,9 +69,7 @@ export const PostIncomeFetch = (newIncome) => (dispatch, getStore) => {
 	})
 	const { auth } = getStore();
 	axios.post(`${API_URI}/income`,
-		{
-			newIncome,
-		},
+		newIncome,
 		{
 			headers: {
 				'Authorization': auth && auth.token,
@@ -125,9 +123,7 @@ export const PostExpensesFetch = (newExpenses) => (dispatch, getStore) => {
 	})
 	const { auth } = getStore();
 	axios.post(`${API_URI}/expenses`,
-		{
-			newExpenses,
-		},
+		newExpenses,
 		{
 			headers: {
 				'Authorization': auth && auth.token,
