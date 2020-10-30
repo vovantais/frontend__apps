@@ -1,11 +1,14 @@
 import React from 'react';
 import ExchangeRates from '../Api/ExchangeRates';
 import News from '../Api/News';
+import Weather from '../Api/Weather';
+import Time from '../Layouts/Time';
 
 function HomePage() {
 	return (
 		<>
-			<h2>HomePage</h2>
+			<Time />
+			<Weather />
 			<ExchangeRates />
 			<News />
 		</>

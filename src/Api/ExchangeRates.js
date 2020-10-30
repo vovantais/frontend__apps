@@ -21,7 +21,6 @@ const Section = styled.section`
 		text-transform: uppercase;
 	}
 `;
-
 function ExchangeRates() {
 	const initialState = {
 		error: null,

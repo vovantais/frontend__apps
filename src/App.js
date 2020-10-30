@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+import './css/styles.css';
 import Wrapper from './Wrapper/Wrapper';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
