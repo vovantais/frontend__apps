@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useSelector } from "react-redux";
+
 function Time() {
 	const initialState = {
 		time: new Date(),
 	}
 	const [time, setTime] = useState(initialState);
-	const userName = useSelector(({ auth }) => auth.auth.userName);
+
 	const getTimeZone = () => {
 		let timeZone = '';
 		let today = new Date(),
@@ -34,12 +34,11 @@ function Time() {
 
 	return (
 		<div className='time'>
-			<p>{getTimeZone()} {userName}</p>
-			<h3>{initialState.time.toLocaleDateString()}</h3>
-			<h2>{initialState.time.toLocaleTimeString()}</h2>
+			<p className='today'>{getTimeZone()} today {initialState.time.toLocaleDateString()}</p>
+			<h2 className='clock'>{initialState.time.toLocaleTimeString()}</h2>
 			{getTime()}
 		</div>
 	)
 }
 
-export default Time
+export default Time;

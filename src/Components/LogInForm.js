@@ -37,6 +37,15 @@ function LogInForm() {
 	const { isCheckAuth, isAuthenticated } = useSelector(({ auth }) => auth.auth);
 	const dispatch = useDispatch();
 
+	const isEpmtyValue = (UserInfo) => {
+		for (let key in UserInfo) {
+			if (UserInfo[key].length === 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	const handleChangeInfo = (e) => {
 		SetUserInfo({
 			...UserInfo,
@@ -44,13 +53,11 @@ function LogInForm() {
 		});
 	}
 
-	const handleSubmitForm = (e) => {
-		e.preventDefault();
-		SetUserInfo(initialState);
-	}
-
 	const handleLogIn = () => {
-		dispatch(AuthLogInFetch({ ...UserInfo }))
+		if (isEpmtyValue(UserInfo)) {
+			dispatch(AuthLogInFetch({ ...UserInfo }));
+			SetUserInfo(initialState);
+		}
 	}
 
 	const AuthorizationForm = (
@@ -58,7 +65,7 @@ function LogInForm() {
 			<JumbotroneImg />
 			<Container>
 				<Section>
-					<Form onSubmit={handleSubmitForm}>
+					<Form>
 						<Form.Group controlId="formBasicEmail" style={{ position: 'relative' }}>
 							<Form.Label> <i className="far fa-envelope"></i> Enter your email address</Form.Label>
 							<Form.Control type="email" name='email' placeholder="Enter email"

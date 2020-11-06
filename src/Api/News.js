@@ -57,11 +57,11 @@ function News() {
 										<img src={item.urlToImage} alt='News thumbnail' width={260} height={210} className='rounded' />
 									</div>
 									<div className="col-md-9">
-										<h3> Title : {item.title} </h3><br />
-										<h5> Description  : {item.description}</h5>
-										<p> Content : {item.content.length > 200 ? item.content.slice(0, 200) : item.content}</p>
-										<h6> Author : {item.author}</h6>
-										<h6> Published at : {item.publishedAt.replace(/[T,Z]/gi, " ")} </h6>
+										<h3 className='news-title-artical'>  {item.title} </h3><br />
+										<h5 className='news-description'>  {item.description}</h5>
+										<p className='news-content'>   {item.content.length > 200 ? item.content.slice(0, 200) : item.content}</p>
+										<p> <strong>Author :</strong> {item.author}</p>
+										<p > <strong>Published at :</strong> {item.publishedAt.replace(/[T,Z]/gi, " ")} </p>
 										<a href={item.url} className='btn btn-md btn-info btn-active' target='_blank' >READ MORE</a>
 									</div>
 								</div>

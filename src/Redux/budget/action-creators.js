@@ -51,7 +51,7 @@ export const GetIncomeFetch = () => (dispatch, getStore) => {
 		},
 	})
 		.then(res => dispatch(GetIncomeSuccess(res.data)))
-		.catch(err => dispatch(GetIncomeFail(err.response)))
+		.catch(err => dispatch(GetIncomeFail(err.response.data)))
 }
 export const GetIncomeSuccess = (payload) => ({
 	type: GET_INCOME_SUCCESS,
@@ -61,7 +61,6 @@ export const GetIncomeFail = (payload) => ({
 	type: GET_INCOME_FAILURE,
 	payload,
 });
-
 
 export const PostIncomeFetch = (newIncome) => (dispatch, getStore) => {
 	dispatch({
@@ -82,7 +81,7 @@ export const PostIncomeFetch = (newIncome) => (dispatch, getStore) => {
 				income: newIncome,
 			}));
 		})
-		.catch(err => dispatch(PostIncomeFail(err.response)))
+		.catch(err => dispatch(PostIncomeFail({ message: err.response.data })))
 }
 export const PostIncomeSucces = (payload) => ({
 	type: POST_INCOME_SUCCESS,
@@ -106,7 +105,7 @@ export const GetExpensesFetch = () => (dispatch, getStore) => {
 		},
 	})
 		.then(res => dispatch(GetExpensesSuccess(res.data)))
-		.catch(err => dispatch(GetExpensesFail(err.response)))
+		.catch(err => dispatch(GetExpensesFail(err.response.data)))
 }
 export const GetExpensesSuccess = (payload) => ({
 	type: GET_EXPENSES_SUCCESS,
@@ -136,7 +135,7 @@ export const PostExpensesFetch = (newExpenses) => (dispatch, getStore) => {
 				expenses: newExpenses,
 			}));
 		})
-		.catch(err => dispatch(PostExpensesFail(err.response)))
+		.catch(err => dispatch(PostExpensesFail({ message: err.response.data })))
 }
 export const PostExpensesSucces = (payload) => ({
 	type: POST_EXPENSES_SUCCESS,
@@ -145,4 +144,77 @@ export const PostExpensesSucces = (payload) => ({
 export const PostExpensesFail = (payload) => ({
 	type: POST_EXPENSES_FAILURE,
 	payload,
+});
+
+// ! Delete 
+
+export const deleteIncomeFetch = (id) => (dispatch, getStore) => {
+	console.log(id);
+	dispatch({
+		type: DELETE_INCOME_FETCH,
+		payload: id,
+	})
+	const { auth } = getStore();
+	axios.delete(`${API_URI}/income`,
+		{
+			headers: {
+				'Authorization': auth && auth.token,
+			},
+			data: {
+				id,
+			},
+		})
+		.then(res => dispatch(deleteIncomeSuccess({
+			message: res.data,
+			deleteId: id,
+		})))
+		.catch(err => dispatch(deleteIncomeFail(err.response.data)))
+}
+
+export const deleteIncomeSuccess = (payload) => ({
+	type: DELETE_INCOME_SUCCESS,
+	payload,
+})
+
+export const deleteIncomeFail = (payload) => ({
+	type: DELETE_INCOME_FAILURE,
+	payload,
+})
+
+export const deleteExpensesFetch = (id) => (dispatch, getStore) => {
+	console.log(id);
+	dispatch({
+		type: DELETE_EXPENSES_FETCH,
+		payload: id,
+	})
+	const { auth } = getStore();
+	axios.delete(`${API_URI}/expenses`,
+		{
+			headers: {
+				'Authorization': auth && auth.token,
+			},
+			data: {
+				id,
+			},
+		})
+		.then(res => dispatch(deleteExpensesSuccess({
+			message: res.data,
+			deleteId: id,
+		})))
+		.catch(err => dispatch(deleteExpensesFail(err.response.data)))
+}
+
+export const deleteExpensesSuccess = (payload) => ({
+	type: DELETE_EXPENSES_SUCCESS,
+	payload,
+})
+
+export const deleteExpensesFail = (payload) => ({
+	type: DELETE_EXPENSES_FAILURE,
+	payload,
+})
+
+// ! Message 
+export const Message = () => ({
+	type: CLOSE_MESSAGE,
 });

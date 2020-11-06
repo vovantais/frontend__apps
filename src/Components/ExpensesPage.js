@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { PostExpensesFetch } from '../Redux/budget/action-creators';
 //import expenses from '../Img/expensesаfix.png';
 import styled from 'styled-components';
+
 const Section = styled.section`
 		background: url(${expenses}) no-repeat  ;
 		background-size: cover;
@@ -24,6 +25,16 @@ function ExpensesPage() {
 	};
 	const [userExpenses, setUserExpenses] = useState(initialState);
 	const dispatch = useDispatch();
+
+	const isEpmtyValue = (userExpenses) => {
+		for (let key in userExpenses) {
+			if (userExpenses[key].length === 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	const handleChangeExpenses = (e) => {
 		console.log(e.target.value);
 		setUserExpenses({
@@ -36,7 +47,9 @@ function ExpensesPage() {
 		setUserExpenses(initialState);
 	}
 	const handleAddExpenses = () => {
-		dispatch(PostExpensesFetch({ ...userExpenses }));
+		if (isEpmtyValue(userExpenses)) {
+			dispatch(PostExpensesFetch({ ...userExpenses }));
+		}
 	}
 	return (
 		<Section>
@@ -46,8 +59,8 @@ function ExpensesPage() {
 					<Form onSubmit={handleSubmitForm}>
 						<Form.Group >
 							<Form.Label><i className="fas fa-dollar-sign"></i>Amount spent</Form.Label>
-							<Form.Control type="number" name='sumSpent' placeholder="Enter sum" tabIndex='1' required step="1" min="1" pattern="^[ 0-9]+$"
-								onChange={handleChangeExpenses} value={userExpenses.sumSpent}
+							<Form.Control type="number" name='sumSpent' placeholder="Enter sum" tabIndex='1' required step="1" min="1"
+								onChange={handleChangeExpenses} value={userExpenses.sumSpent.replace(/[^0-9]/ig, '')}
 							/>
 						</Form.Group>
 						<Form.Group >
@@ -75,8 +88,8 @@ function ExpensesPage() {
 								onChange={handleChangeExpenses} value={userExpenses.dateTimeExpenses} />
 						</Form.Group>
 						<Form.Group >
-							<Form.Label><i class="fas fa-info-circle"></i>Description</Form.Label>
-							<Form.Control as="textarea" name='descriptionExpenses' rows={4} placeholder='Enter description' tabIndex='4'
+							<Form.Label><i className="fas fa-info-circle"></i>Description</Form.Label>
+							<Form.Control as="textarea" name='descriptionExpenses' rows={4} placeholder='Enter description' tabIndex='4' required
 								onChange={handleChangeExpenses} value={userExpenses.descriptionExpenses}
 							/>
 						</Form.Group>

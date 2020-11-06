@@ -13,6 +13,14 @@ function VerifyUser(modal) {
 	const { isCheckVerify, isVerify } = useSelector(({ auth }) => auth.auth);
 	const dispatch = useDispatch();
 
+	const isEpmtyValue = (verifyUser) => {
+		for (let key in verifyUser) {
+			if (verifyUser[key].length === 0) {
+				return false;
+			}
+		}
+		return true;
+	}
 	const handleChangeUserInfo = (e) => {
 		console.log(e.target.value);
 		setVerifyUser({
@@ -20,12 +28,12 @@ function VerifyUser(modal) {
 			[e.target.name]: e.target.value,
 		})
 	}
-	const handleSubmitForm = (e) => {
-		e.preventDefault();
-		setVerifyUser(initialState);
-	}
+
 	const handleVarify = () => {
-		dispatch(VerifyAccountFetch({ ...verifyUser }));
+		if (isEpmtyValue(verifyUser)) {
+			dispatch(VerifyAccountFetch({ ...verifyUser }));
+			setVerifyUser(initialState);
+		}
 	}
 	const ModalVerifyUser = (
 		<Modal show={modal.showModal} onHide={modal.closeModal} style={{ marginTop: 20, }} >
@@ -33,7 +41,7 @@ function VerifyUser(modal) {
 				<Modal.Title>Verify email address</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<Form onSubmit={handleSubmitForm}>
+				<Form >
 					<Form.Group controlId="formBasicEmailAddress">
 						<Form.Label> <i className="far fa-envelope"></i> Enter your email address</Form.Label>
 						<Form.Control type="email" name='email' placeholder="Enter email"

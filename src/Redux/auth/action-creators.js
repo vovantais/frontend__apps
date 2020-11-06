@@ -21,7 +21,7 @@ export const AuthLogInFetch = (loginPayload) => (dispatch) => {
 	dispatch({
 		type: AUTH_LOGIN_FETCH,
 	})
-	axios.post(`${API_URI}/Login`, loginPayload)
+	axios.post(`${API_URI}/login`, loginPayload)
 		.then(res => dispatch(AuthLogInSuccess(res.data)))
 		.catch(err => dispatch(AuthLogInFail(err.response.data)))
 

@@ -89,7 +89,6 @@ function SigInForm() {
 	const handleShowModal = (e) => {
 		e.preventDefault()
 		setShow(true);
-
 	}
 	return (
 		<>

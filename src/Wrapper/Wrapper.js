@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthMessage } from '../Redux/auth/action-creators';
+import { Message } from '../Redux/budget/action-creators';
 import LogInForm from '../Components/LogInForm';
 import HomePage from '../Components/HomePage';
 import SigInForm from '../Components/SiginForm';
@@ -23,11 +24,14 @@ import NavbarCommon from '../Layouts/NavbarCommon';
 function Wrapper() {
 
 	const { text, success } = useSelector(({ auth }) => auth.message);
+	const { message, type } = useSelector(({ budget }) => budget.messages);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		toast[success ? 'success' : 'error'](text, { onClose: dispatch(AuthMessage()) })
-	}, [text]);
+		toast[success ? 'success' : 'error'](text, { onClose: dispatch(AuthMessage()) });
+		toast[type ? 'success' : 'error'](message, { onClose: dispatch(Message()) });
+	}, [text, message]);
+
 	return (
 		<>
 			<ToastContainer
@@ -41,6 +45,7 @@ function Wrapper() {
 				draggable
 				pauseOnHover
 			/>
+
 			<Router>
 				{/* // todo remove duplicate routes  */}
 				{/* <NavbarCommon /> */}
