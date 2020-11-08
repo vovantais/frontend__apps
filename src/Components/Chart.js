@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { Doughnut } from 'react-chartjs-2';
 
@@ -45,14 +45,18 @@ function Chart() {
 	const [chart, setChart] = useState(initialState);
 
 
-	income && income.map((item) => {
-		chart.datasets[0].data.push('+' + item.sumIncome);
-		chart.labels.push(item.descriptionIncome);
-	});
-	expenses && expenses.map((item) => {
-		chart.datasets[0].data.push('-' + item.sumSpent)
-		chart.labels.push(item.category)
-	});
+	useEffect(() => {
+		chart.labels = [];
+		chart.datasets[0].data = [];
+		income && income.map((item) => {
+			chart.datasets[0].data.push('+' + item.sumIncome);
+			chart.labels.push(item.descriptionIncome);
+		});
+		expenses && expenses.map((item) => {
+			chart.datasets[0].data.push('-' + item.sumSpent)
+			chart.labels.push(item.category)
+		});
+	}, [income.length, expenses.length])
 
 	return (
 		<div>

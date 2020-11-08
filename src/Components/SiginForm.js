@@ -30,10 +30,12 @@ function SigInForm() {
 	const initialState = {
 		userName: '',
 		email: '',
+		city: '',
 		password: '',
 		confirmPassword: '',
 		userNameError: '',
 		emailError: '',
+		cityError: '',
 		passwordError: '',
 		confirmPasswordError: '',
 	};
@@ -54,6 +56,14 @@ function SigInForm() {
 		let passwordError = '';
 		let confirmPasswordError = '';
 		let userNameError = '';
+		let cityError = '';
+		if (UserInfo.city.length < 3) {
+			cityError = 'City must be more than 3 symbol letters!';
+		}
+		if (cityError) {
+			SetUserInfo({ ...UserInfo, cityError });
+			return false;
+		}
 		if (UserInfo.userName.length < 3) {
 			userNameError = 'Name must be more than 3 symbol letters!';
 		}
@@ -107,24 +117,30 @@ function SigInForm() {
 							<Form.Control type="email" name='email' placeholder="Enter email"
 								onChange={handleChangeInfo} value={UserInfo.email} tabIndex='2' required />
 						</Form.Group>
+						<div><h6 style={{ color: 'red' }}>{UserInfo.cityError}</h6></div>
+						<Form.Group controlId="formBasicСity">
+							<Form.Label><i class="fas fa-city"></i> Enter your Сity</Form.Label>
+							<Form.Control type="text" name='city' placeholder="Enter city"
+								onChange={handleChangeInfo} value={UserInfo.city.replace(/[^A-zА-яЁё _]/ig, '')} tabIndex='3' required />
+						</Form.Group>
 						<div><h6 style={{ color: 'red' }}>{UserInfo.passwordError}</h6></div>
 						<Form.Group controlId="formBasicPassword">
 							<Form.Label><i className="fas fa-lock"></i>Enter your password</Form.Label>
 							<Form.Control type="password" name='password' placeholder="Enter password"
-								onChange={handleChangeInfo} value={UserInfo.password} tabIndex='3' required />
+								onChange={handleChangeInfo} value={UserInfo.password} tabIndex='4' required />
 						</Form.Group>
 						<div><h6 style={{ color: 'red' }}>{UserInfo.confirmPasswordError}</h6></div>
 						<Form.Group controlId="formBasicConfirmPassword">
 							<Form.Label><i className="fas fa-lock"></i>Confirm your password</Form.Label>
 							<Form.Control type="password" name='confirmPassword' placeholder="Confirm password"
-								onChange={handleChangeInfo} value={UserInfo.confirmPassword} className='validate' tabIndex='4' required />
+								onChange={handleChangeInfo} value={UserInfo.confirmPassword} className='validate' tabIndex='5' required />
 						</Form.Group>
 						<div className="text-center" >
 							<Button variant="info" className='btn-active' type='submit' name='btnSignIn'
-								style={{ width: 120, marginRight: 40 }} tabIndex='5'
+								style={{ width: 120, marginRight: 40 }} tabIndex='6'
 								disabled={isCheckAuth}>Send data</Button>
 							<Button variant="info" className='btn-active' type='submit' name='btnVerify'
-								style={{ width: 120, }} onClick={handleShowModal} tabIndex='6'
+								style={{ width: 120, }} onClick={handleShowModal} tabIndex='7'
 								disabled={isCheckAuth}>
 								Verify email</Button>
 						</div>

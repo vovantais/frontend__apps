@@ -27,6 +27,7 @@ const AuthReduser = (prevState = {}, action) => {
 				isCheckAuth: false,
 				token: action.payload.token,
 				userName: action.payload.userName,
+				city: action.payload.city,
 				isAuthenticated: true,
 			}
 		case AUTH_LOGIN_FAILURE:

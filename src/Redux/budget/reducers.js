@@ -40,7 +40,7 @@ import {
 } from '../budget/action-types';
 
 // ! Income
-const income = (prevState = {}, action) => {
+const income = (prevState = { incomes: [] }, action) => {
 	const { ...newState } = prevState;
 	switch (action.type) {
 		case GET_INCOME_FETCH:
@@ -61,7 +61,7 @@ const income = (prevState = {}, action) => {
 		case POST_INCOME_FETCH:
 			return prevState;
 		case POST_INCOME_SUCCESS:
-			// todo 
+			// todo закидывать в стор когда добовляешь 
 			// console.log(action.payload);
 			// return prevState.budget.income.incomes.push(action.payload)
 			return {
@@ -69,40 +69,42 @@ const income = (prevState = {}, action) => {
 			}
 		case POST_INCOME_FAILURE:
 			return prevState;
-		//case DELETE_INCOME_FETCH:
-		// return {
-		// 	...prevState,
-		// 	isCheckAuth: true,
-		// }
+		case DELETE_INCOME_FETCH:
+			return {
+				...prevState,
+				isCheckAuth: true,
+			}
 		case DELETE_INCOME_SUCCESS:
-			newState.incomes = newState.incomes.filter(item => item._id !== action.payload.id);
+			newState.incomes = newState.incomes.filter(item => item._id !== action.payload.deletedId);
 			return newState;
-		//case DELETE_INCOME_FAILURE:
-		// return {
-		// 	...prevState,
-		// 	isCheckAuth: false,
-		// }
-		// case PATCH_INCOME_DESCRIPTION_FETCH:
-		// 	return {
-		// 		...prevState,
-		// 		isCheckAuth: true,
-		// 	}
-		// case PATCH_INCOME_DESCRIPTION_SUCCESS:
-		// 	return {
-		// 		...prevState,
-		// 		isCheckAuth: false,
-		// 	};
-		// case PATCH_INCOME_DESCRIPTION_FAILURE:
-		// 	return {
-		// 		...prevState,
-		// 		isCheckAuth: false,
-		// 	}
+		case DELETE_INCOME_FAILURE:
+			return {
+				...prevState,
+				isCheckAuth: false,
+			}
+		case PATCH_INCOME_DESCRIPTION_FETCH:
+			return {
+				...prevState,
+				isCheckAuth: true,
+			}
+		case PATCH_INCOME_DESCRIPTION_SUCCESS:
+			// todo сделать поиск и обновления дескрипшина в сторе 
+			// todo удалить isCheckAuth: false,
+			return {
+				...prevState,
+				isCheckAuth: false,
+			};
+		case PATCH_INCOME_DESCRIPTION_FAILURE:
+			return {
+				...prevState,
+				isCheckAuth: false,
+			}
 		default:
 			return prevState;
 	}
 }
 // ! Expenses  
-const expenses = (prevState = {}, action) => {
+const expenses = (prevState = { spenders: [] }, action) => {
 	const { ...newState } = prevState;
 	switch (action.type) {
 		case GET_EXPENSES_FETCH:
@@ -123,7 +125,7 @@ const expenses = (prevState = {}, action) => {
 		case POST_EXPENSES_FETCH:
 			return prevState;
 		case POST_EXPENSES_SUCCESS:
-			// todo
+			// todo закидывать в стор когда добовляешь 
 			// console.log(action.payload);
 			// return prevState.budget.income.incomes.push(action.payload)
 			return {
@@ -131,35 +133,36 @@ const expenses = (prevState = {}, action) => {
 			}
 		case POST_EXPENSES_FAILURE:
 			return prevState;
-		//case DELETE_EXPENSES_FETCH:
-		// return {
-		// 	...prevState,
-		// 	isCheckAuth: true,
-		// }
+		case DELETE_EXPENSES_FETCH:
+			return {
+				...prevState,
+				isCheckAuth: true,
+			}
 		case DELETE_EXPENSES_SUCCESS:
-			console.log(newState.spenders);
-			newState.spenders = newState.spenders.filter(item => item._id !== action.payload.id);
+			newState.spenders = newState.spenders.filter(item => item._id !== action.payload.deleteId);
 			return newState;
-		//case DELETE_EXPENSES_FAILURE:
-		// return {
-		// 	...prevState,
-		// 	isCheckAuth: false,
-		// }
-		// case PATCH_EXPENSES_DESCRIPTION_FETCH:
-		// 	return {
-		// 		...prevState,
-		// 		isCheckAuth: true,
-		// 	}
-		// case PATCH_EXPENSES_DESCRIPTION_SUCCESS:
-		// 	return {
-		// 		...prevState,
-		// 		isCheckAuth: false,
-		// 	};
-		// case PATCH_EXPENSES_DESCRIPTION_FAILURE:
-		// 	return {
-		// 		...prevState,
-		// 		isCheckAuth: false,
-		// 	}
+		case DELETE_EXPENSES_FAILURE:
+			return {
+				...prevState,
+				isCheckAuth: false,
+			}
+		case PATCH_EXPENSES_DESCRIPTION_FETCH:
+			return {
+				...prevState,
+				isCheckAuth: true,
+			}
+		case PATCH_EXPENSES_DESCRIPTION_SUCCESS:
+			// todo сделать поиск и обновления дескрипшина в сторе 
+			// todo удалить isCheckAuth: false,
+			return {
+				...prevState,
+				isCheckAuth: false,
+			};
+		case PATCH_EXPENSES_DESCRIPTION_FAILURE:
+			return {
+				...prevState,
+				isCheckAuth: false,
+			}
 		default:
 			return prevState;
 	}
