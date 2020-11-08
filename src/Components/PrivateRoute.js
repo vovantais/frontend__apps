@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 function PrivateRoute({ children, ...rest }) {
 
-	const { isAuthenticated } = useSelector(({ auth }) => auth);
+	const { isAuthenticated } = useSelector(({ auth }) => auth.auth);
 	return (
 		isAuthenticated ? (<Route {...rest}> {children} </Route>) : (<Redirect to='/login' />)
 	)

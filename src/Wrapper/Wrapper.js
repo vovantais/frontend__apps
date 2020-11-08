@@ -63,38 +63,23 @@ function Wrapper() {
 						<NavAuth />
 						<SigInForm />
 					</Route>
-					{/* <PrivateRoute exact path='/homepage'>
+					<PrivateRoute exact path='/homepage'>
 						<NavbarCommon />
 						<HomePage />
-					</PrivateRoute> */}
-					<Route exact path='/homepage'>
-						<NavbarCommon />
-						<HomePage />
-					</Route>
-					{/* <PrivateRoute exact path='/schedule'>
+					</PrivateRoute>
+
+					<PrivateRoute exact path='/schedule'>
 						<NavbarCommon />
 						<SchedulepPage />
-					</PrivateRoute> */}
-					<Route exact path='/schedule'>
-						<NavbarCommon />
-						<SchedulepPage />
-					</Route>
-					{/* <PrivateRoute exact path='/income'>
+					</PrivateRoute>
+					<PrivateRoute exact path='/income'>
 						<NavbarCommon />
 						<IncomePage />
-					</PrivateRoute> */}
-					<Route exact path='/income'>
-						<NavbarCommon />
-						<IncomePage />
-					</Route>
-					{/* <PrivateRoute exact path='/expenses'>
+					</PrivateRoute>
+					<PrivateRoute exact path='/expenses'>
 						<NavbarCommon />
 						<ExpensesPage />
-					</PrivateRoute> */}
-					<Route exact path='/expenses'>
-						<NavbarCommon />
-						<ExpensesPage />
-					</Route>
+					</PrivateRoute>
 					<Route>
 						<NotFoundPage path='*' />
 					</Route>

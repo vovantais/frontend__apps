@@ -1,16 +1,10 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import React from 'react';
+import { useSelector } from "react-redux";
 import { Tabs, Tab } from 'react-bootstrap';
-import { GetExpensesFetch, GetIncomeFetch } from '../Redux/budget/action-creators';
 
 function Balance() {
 	const income = useSelector(({ budget }) => budget.income.incomes);
 	const expenses = useSelector(({ budget }) => budget.expenses.spenders);
-	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(GetIncomeFetch())
-		dispatch(GetExpensesFetch())
-	}, [])
 	const incom = [];
 	const expense = [];
 	let resIncome = 0;
@@ -19,14 +13,14 @@ function Balance() {
 	return (
 		<>
 			{
-				income ? income.map((item) => (
-					<p style={{ display: 'none' }}>{incom.push(item.sumIncome)}</p>
-				)) : null
+				income && income.map((item, index) => (
+					<p key={index} style={{ display: 'none' }}>{incom.push(item.sumIncome)}</p>
+				))
 			}
 			{
-				expenses ? expenses.map((item, index) => (
-					<p style={{ display: 'none' }}>{expense.push(item.sumSpent)}</p>
-				)) : null
+				expenses && expenses.map((item, index) => (
+					<p key={index} style={{ display: 'none' }}>{expense.push(item.sumSpent)}</p>
+				))
 			}
 			{
 				incom.map(item => {

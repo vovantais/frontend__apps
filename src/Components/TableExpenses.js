@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { GetExpensesFetch, deleteExpensesFetch } from '../Redux/budget/action-creators';
+import { deleteExpensesFetch } from '../Redux/budget/action-creators';
 import { Container, Table } from 'react-bootstrap';
 import TableItemExpenses from '../Components/TableItemExpenses';
 
@@ -10,13 +10,8 @@ function TableExpenses() {
 	const dispatch = useDispatch();
 
 	const handleRemove = (id) => {
-		console.log(id);
 		dispatch(deleteExpensesFetch(id))
 	}
-
-	useEffect(() => {
-		dispatch(GetExpensesFetch())
-	}, [])
 
 	return (
 		<>

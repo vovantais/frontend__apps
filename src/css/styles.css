@@ -393,6 +393,12 @@ h6 {
 	margin-top: 10px;
 	color: red;
 }
+.make-visible {
+	display: flex;
+}
+.btn-visible {
+	margin: 0px 0px 0px 20px;
+}
 @media (max-width: 1200px) {
 	.NewsGrid {
 		display: flex;
@@ -452,6 +458,13 @@ h6 {
 	}
 	.weather {
 		margin: 0px 0px 20px 0px;
+	}
+	.make-visible {
+		display: flex;
+		flex-direction: column;
+	}
+	.btn-visible {
+		margin: 20px 0px 0px 0px;
 	}
 }
 @media (max-width: 450px) {

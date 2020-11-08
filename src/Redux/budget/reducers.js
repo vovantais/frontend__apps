@@ -10,9 +10,9 @@ import {
 	POST_INCOME_SUCCESS,
 	POST_INCOME_FAILURE,
 
-	PUT_INCOME_FETCH,
-	PUT_INCOME_SUCCESS,
-	PUT_INCOME_FAILURE,
+	PATCH_INCOME_DESCRIPTION_FETCH,
+	PATCH_INCOME_DESCRIPTION_SUCCESS,
+	PATCH_INCOME_DESCRIPTION_FAILURE,
 
 	DELETE_INCOME_FETCH,
 	DELETE_INCOME_SUCCESS,
@@ -27,9 +27,9 @@ import {
 	POST_EXPENSES_SUCCESS,
 	POST_EXPENSES_FAILURE,
 
-	PUT_EXPENSES_FETCH,
-	PUT_EXPENSES_SUCCESS,
-	PUT_EXPENSES_FAILURE,
+	PATCH_EXPENSES_DESCRIPTION_FETCH,
+	PATCH_EXPENSES_DESCRIPTION_SUCCESS,
+	PATCH_EXPENSES_DESCRIPTION_FAILURE,
 
 	DELETE_EXPENSES_FETCH,
 	DELETE_EXPENSES_SUCCESS,
@@ -41,6 +41,7 @@ import {
 
 // ! Income
 const income = (prevState = {}, action) => {
+	const { ...newState } = prevState;
 	switch (action.type) {
 		case GET_INCOME_FETCH:
 			return {
@@ -68,25 +69,41 @@ const income = (prevState = {}, action) => {
 			}
 		case POST_INCOME_FAILURE:
 			return prevState;
-		case DELETE_INCOME_FETCH:
-			return {
-				...prevState,
-				isCheckAuth: true,
-			}
+		//case DELETE_INCOME_FETCH:
+		// return {
+		// 	...prevState,
+		// 	isCheckAuth: true,
+		// }
 		case DELETE_INCOME_SUCCESS:
-			console.log(prevState.budget.income.incomes.filter(item => item._id !== action.payload.deleteId));
-			return prevState.budget.income.incomes.filter(item => item._id !== action.payload.deleteId);
-		case DELETE_INCOME_FAILURE:
-			return {
-				...prevState,
-				isCheckAuth: false,
-			}
+			newState.incomes = newState.incomes.filter(item => item._id !== action.payload.id);
+			return newState;
+		//case DELETE_INCOME_FAILURE:
+		// return {
+		// 	...prevState,
+		// 	isCheckAuth: false,
+		// }
+		// case PATCH_INCOME_DESCRIPTION_FETCH:
+		// 	return {
+		// 		...prevState,
+		// 		isCheckAuth: true,
+		// 	}
+		// case PATCH_INCOME_DESCRIPTION_SUCCESS:
+		// 	return {
+		// 		...prevState,
+		// 		isCheckAuth: false,
+		// 	};
+		// case PATCH_INCOME_DESCRIPTION_FAILURE:
+		// 	return {
+		// 		...prevState,
+		// 		isCheckAuth: false,
+		// 	}
 		default:
 			return prevState;
 	}
 }
 // ! Expenses  
 const expenses = (prevState = {}, action) => {
+	const { ...newState } = prevState;
 	switch (action.type) {
 		case GET_EXPENSES_FETCH:
 			return {
@@ -114,18 +131,35 @@ const expenses = (prevState = {}, action) => {
 			}
 		case POST_EXPENSES_FAILURE:
 			return prevState;
-		case DELETE_EXPENSES_FETCH:
-			return {
-				...prevState,
-				isCheckAuth: true,
-			}
+		//case DELETE_EXPENSES_FETCH:
+		// return {
+		// 	...prevState,
+		// 	isCheckAuth: true,
+		// }
 		case DELETE_EXPENSES_SUCCESS:
-			return prevState.budget.income.incomes.filter(item => item._id !== action.payload.deleteId);
-		case DELETE_EXPENSES_FAILURE:
-			return {
-				...prevState,
-				isCheckAuth: false,
-			}
+			console.log(newState.spenders);
+			newState.spenders = newState.spenders.filter(item => item._id !== action.payload.id);
+			return newState;
+		//case DELETE_EXPENSES_FAILURE:
+		// return {
+		// 	...prevState,
+		// 	isCheckAuth: false,
+		// }
+		// case PATCH_EXPENSES_DESCRIPTION_FETCH:
+		// 	return {
+		// 		...prevState,
+		// 		isCheckAuth: true,
+		// 	}
+		// case PATCH_EXPENSES_DESCRIPTION_SUCCESS:
+		// 	return {
+		// 		...prevState,
+		// 		isCheckAuth: false,
+		// 	};
+		// case PATCH_EXPENSES_DESCRIPTION_FAILURE:
+		// 	return {
+		// 		...prevState,
+		// 		isCheckAuth: false,
+		// 	}
 		default:
 			return prevState;
 	}
@@ -141,11 +175,16 @@ const messages = (prevState = {}, action) => {
 		case POST_INCOME_FAILURE:
 		case POST_EXPENSES_SUCCESS:
 		case POST_EXPENSES_FAILURE:
+			return { ...action.payload.message };
 		case DELETE_INCOME_SUCCESS:
 		case DELETE_INCOME_FAILURE:
 		case DELETE_EXPENSES_SUCCESS:
 		case DELETE_EXPENSES_FAILURE:
-			return { ...action.payload.message };
+		case PATCH_INCOME_DESCRIPTION_SUCCESS:
+		case PATCH_INCOME_DESCRIPTION_FAILURE:
+		case PATCH_EXPENSES_DESCRIPTION_SUCCESS:
+		case PATCH_EXPENSES_DESCRIPTION_FAILURE:
+			return { ...action.payload };
 		case CLOSE_MESSAGE:
 			return {};
 		default:

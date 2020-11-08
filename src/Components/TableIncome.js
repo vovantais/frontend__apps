@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Container, Table } from 'react-bootstrap';
 import { useSelector, useDispatch } from "react-redux";
-import { deleteIncomeFetch, GetIncomeFetch } from '../Redux/budget/action-creators';
+import { deleteIncomeFetch } from '../Redux/budget/action-creators';
 import TableItemIncome from './TableItemIncome';
 
 function TableIncome() {
@@ -10,12 +10,8 @@ function TableIncome() {
 	const dispatch = useDispatch();
 
 	const handleRemove = (id) => {
-		console.log(id);
-		dispatch(deleteIncomeFetch(id))
+		dispatch(deleteIncomeFetch(id));
 	}
-	useEffect(() => {
-		dispatch(GetIncomeFetch())
-	}, [])
 
 	return (
 		<>
@@ -33,9 +29,9 @@ function TableIncome() {
 						</thead>
 						<tbody>
 							{
-								income ? income.map(({ sumIncome, dateTimeIncome, descriptionIncome, _id }, index) => (
+								income && income.map(({ sumIncome, dateTimeIncome, descriptionIncome, _id }, index) => (
 									<TableItemIncome key={index} {...{ sumIncome, dateTimeIncome, descriptionIncome, _id, handleRemove: (id) => { handleRemove(id) }, index }} />
-								)) : null
+								))
 							}
 						</tbody>
 					</Table>
