@@ -35,7 +35,8 @@ function Time() {
 
 	return (
 		<div className='time'>
-			<p className='today'>{getTimeZone()} {name} today {initialState.time.toLocaleDateString()}</p>
+			<p className='today'>{getTimeZone()} {name} </p>
+			<p className='today'>today {initialState.time.toLocaleDateString()}</p>
 			<h2 className='clock'>{initialState.time.toLocaleTimeString()}</h2>
 			{getTime()}
 		</div>

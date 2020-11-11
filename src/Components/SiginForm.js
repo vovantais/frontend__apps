@@ -103,7 +103,7 @@ function SigInForm() {
 	return (
 		<>
 			<JumbotroneImg />
-			<Container >
+			<Container className='wrappers'>
 				<Section>
 					<Form onSubmit={handleSubmitForm} className='form__signin'>
 						<div><h6 style={{ color: 'red' }}>{UserInfo.userNameError}</h6></div>

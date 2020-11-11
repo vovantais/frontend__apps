@@ -63,7 +63,7 @@ function LogInForm() {
 	const AuthorizationForm = (
 		<>
 			<JumbotroneImg />
-			<Container>
+			<Container className='wrappers'>
 				<Section>
 					<Form>
 						<Form.Group controlId="formBasicEmail" style={{ position: 'relative' }}>

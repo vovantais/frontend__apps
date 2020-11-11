@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { API_EXCHANGE_RATES } from '../Consts/consts';
+import { Spinner } from 'react-bootstrap';
 
 function ExchangeRates() {
 	const initialState = {
@@ -14,13 +15,15 @@ function ExchangeRates() {
 			.then(
 				(result) => {
 					setInfoCurs({
+						...infoCurs,
 						isLoaded: true,
 						items: result,
 					});
 				},
 				(error) => {
 					setInfoCurs({
-						isLoaded: true,
+						...infoCurs,
+						isLoaded: false,
 						error,
 					});
 				}
@@ -46,7 +49,7 @@ function ExchangeRates() {
 	if (error) {
 		return <p> Error {error.message}</p>
 	} else if (!isLoaded) {
-		return <p>Loading ...</p>
+		return <div className='text-center'> <Spinner animation="border" /> Loading...</div>
 	} else {
 		return CursInfo;
 	}

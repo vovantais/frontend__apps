@@ -52,7 +52,7 @@ function ExpensesPage() {
 		}
 	}
 	return (
-		<Section>
+		<Section className='wrappers'>
 			<div className='overlay'>
 				<Container>
 					<h1 className='text-center'>ADD EXPENSES</h1>

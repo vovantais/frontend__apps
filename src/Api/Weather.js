@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { API_TO_CONNECT_WEATHER } from '../Consts/consts';
 import { useSelector } from "react-redux";
+import { Spinner } from 'react-bootstrap';
 
 function Weather() {
 	const initialState = {
@@ -17,13 +17,15 @@ function Weather() {
 			.then(res => res.json())
 			.then(result => {
 				setWeather({
+					...weather,
 					isLoaded: true,
 					items: result,
 				})
 			})
 			.catch(err => {
 				setWeather({
-					isLoaded: true,
+					...weather,
+					isLoaded: false,
 					error: err.message,
 				});
 			})
@@ -34,7 +36,7 @@ function Weather() {
 	if (error) {
 		return <p> Error {error.message}</p>
 	} else if (!isLoaded) {
-		return <h3 className='text-center'> Weather Loading ... </h3>
+		return <div className='text-center'> <Spinner animation="border" />Weather Loading...</div>
 	} else {
 		return (
 			<div className='weather'>

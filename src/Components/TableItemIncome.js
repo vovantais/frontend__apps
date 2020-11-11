@@ -22,7 +22,6 @@ function TableItemIncome({ sumIncome, dateTimeIncome, descriptionIncome, _id, ha
 		dispatch(PatchIncomeFetch(id, description));
 		setVisible(!visible);
 	}
-
 	return (
 		<tr>
 			<td>{index + 1}</td>

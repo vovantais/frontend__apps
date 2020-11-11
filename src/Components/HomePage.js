@@ -6,12 +6,12 @@ import Time from '../Components/Time';
 
 function HomePage() {
 	return (
-		<div className='wrapper'>
+		<div className='wrap  wrappers'>
 			<div className='wrapper-flex'>
-				<Time />
+				< Time />
 				<Weather />
 				<ExchangeRates />
-			</div>
+			</div >
 			<News />
 		</div >
 	)

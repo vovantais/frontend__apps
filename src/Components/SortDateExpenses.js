@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { sortExpenses } from '../Redux/sort/action-creators';
 
 const Section = styled.section`
 	width: 100%;
@@ -18,18 +20,31 @@ const Section = styled.section`
 	color: #17a2b8;
 	letter-spacing: 0.8px;
 	font-size: 17px;
-	margin: 20px 0px 10px 0px;
+	margin: 10px 0px 10px 0px;
 `;
-function SortDate() {
+
+
+function SortDateExpenses() {
 
 	const initialState = {
 		month: '',
 		year: '',
 	};
 	const [date, setDate] = useState(initialState);
+	const dispatch = useDispatch();
+	const expenses = useSelector(({ budget }) => budget.expenses.spenders);
+
+	const arrYear = new Set();
+	const arrMonth = new Set();
+
+
+	expenses && expenses.map(item => {
+		arrYear.add((new Date(item.dateTimeExpenses)).getFullYear());
+		arrMonth.add((new Date(item.dateTimeExpenses)).toLocaleString('en-us', { month: 'long' }));
+	})
 
 	const handleGetData = () => {
-
+		dispatch(sortExpenses({ ...date }));
 	}
 
 	const handleSubmitForm = (e) => {
@@ -37,7 +52,6 @@ function SortDate() {
 		setDate(initialState);
 	}
 	const handleChangeDate = (e) => {
-		console.log(e.target.value);
 		setDate({
 			...date,
 			[e.target.name]: e.target.value,
@@ -47,40 +61,37 @@ function SortDate() {
 	return (
 		<Section>
 			<Form onSubmit={handleSubmitForm}>
-				<Form.Group >
-					<Form.Label><i className="far fa-calendar-alt"></i> Month</Form.Label>
+				<Form.Group className="form-data">
+					<Form.Label><i className="far fa-calendar-alt"></i> Choose month</Form.Label>
 					<Form.Control as="select" tabIndex='1' name='month'
 						onChange={handleChangeDate} value={date.month}>
 						<option selected>Select a month</option>
-						<option>January</option>
-						<option>February</option>
-						<option>March</option>
-						<option>April</option>
-						<option>May</option>
-						<option>June</option>
-						<option>July</option>
-						<option>August</option>
-						<option>September</option>
-						<option>October</option>
-						<option>November</option>
-						<option>December</option>
+						{
+							[...arrMonth].map(item => (
+								<option>{item}</option>
+							))
+						}
 					</Form.Control>
 				</Form.Group>
-				<Form.Group >
-					<Form.Label><i className="far fa-calendar-alt"></i> Year</Form.Label>
+				<Form.Group className="form-data">
+					<Form.Label><i className="far fa-calendar-alt"></i> Choose year</Form.Label>
 					<Form.Control as="select" tabIndex='2' name='year'
 						onChange={handleChangeDate} value={date.year}>
 						<option selected>Select a year</option>
-						<option>2020</option>
+						{
+							[...arrYear].map(item => (
+								<option>{item}</option>
+							))
+						}
 					</Form.Control>
 				</Form.Group>
 				<div className="text-center">
 					<Button variant='info' className='btn-active btn-center' type='submit' name='btnAdd'
-						onClick={handleGetData} tabIndex='3' style={{ width: 150 }}>ADD</Button>
+						onClick={handleGetData} tabIndex='3' style={{ width: 150 }}>Sort</Button>
 				</div>
 			</Form>
-		</Section>
+		</Section >
 	)
 }
 
-export default SortDate;
+export default SortDateExpenses;

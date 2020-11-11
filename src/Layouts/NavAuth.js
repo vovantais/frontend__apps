@@ -17,7 +17,7 @@ const Section = styled.section`
 function NavAuth() {
 	return (
 		<>
-			<Section>
+			<Section className='wrappers'>
 				<Nav>
 					<NavLink className='links' to="/login">Login</NavLink>
 					<NavLink exact to="/" className='links'><img className='img-logo' src={logo} alt="logo" /></NavLink>

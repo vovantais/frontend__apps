@@ -195,8 +195,8 @@ h6 {
 }
 .img-logo {
 	display: block;
-	width: 80px;
-	height: 80px;
+	width: 65px;
+	height: 65px;
 	margin: 20px 0px 20px 0px;
 	opacity: 1;
 	z-index: 99;
@@ -231,7 +231,7 @@ h6 {
 	margin: 0 auto;
 	text-align: center;
 	position: relative;
-	left: 70px;
+	left: 40px;
 }
 .nav-links {
 	display: flex;
@@ -279,7 +279,7 @@ h6 {
 	color: rgb(37, 33, 33);
 }
 .form__signin {
-	margin: 40px 0px 0px 0px;
+	margin: 80px 0px 0px 0px;
 }
 .overlay {
 	background: #000;
@@ -296,14 +296,13 @@ h6 {
 	border: none;
 	background: rgb(192, 189, 189);
 }
-.wrapper {
+.wrap {
 	background: rgb(192, 189, 189);
-	padding: 30px 0px 0px 0px;
 }
 .wrapper-flex {
 	display: flex;
 	justify-content: space-around;
-	padding: 0px 0px 30px 0px;
+	padding: 30px 0px 30px 0px;
 }
 .time {
 	display: flex;
@@ -372,11 +371,16 @@ h6 {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	margin: 20px 0px 0px 0px;
+	margin: 30px 0px 0px 0px;
+	border-radius: 8px;
+	position: fixed;
+	left: 40px;
 }
 .balance-tabs {
 	font-size: 20px;
 	text-transform: uppercase;
+	box-shadow: 0 0 10px rgba(20, 18, 18, 0.8);
+	border-radius: 8px;
 }
 .balance-total {
 	font-size: 25px;
@@ -398,6 +402,39 @@ h6 {
 }
 .btn-visible {
 	margin: 0px 0px 0px 20px;
+}
+.form-data {
+	margin: 0px 10px 0px 0px;
+	width: 150px;
+}
+.wrapper-balance-sort {
+	display: flex;
+	justify-content: flex-end;
+	position: relative;
+}
+.accordion {
+	margin: 30px 40px 0px 0px;
+	border: 2px solid gold;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(65, 61, 61, 0.8);
+	display: flex;
+	flex-direction: column;
+}
+.wrappers {
+	padding: 0px 10px;
+}
+.select-feild {
+	width: 200px;
+}
+.accordion-toogle {
+	color: #1eaf84;
+	cursor: pointer;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.6px;
+}
+.charts {
+	background: rgb(221, 221, 221);
 }
 @media (max-width: 1200px) {
 	.NewsGrid {
@@ -446,12 +483,12 @@ h6 {
 		top: 12px;
 	}
 	.form__signin {
-		margin: 120px 0px 0px 0px;
+		margin: 200px 0px 40px 0px;
 	}
 	.wrapper-flex {
 		display: flex;
 		flex-direction: column;
-		padding: 0px 0px 20px 0px;
+		padding: 25px 0px;
 	}
 	.clock {
 		margin: 0px 0px 20px 0px;
@@ -466,9 +503,25 @@ h6 {
 	.btn-visible {
 		margin: 20px 0px 0px 0px;
 	}
+	.wrapper-balance-sort {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+	}
+	.balance-tab {
+		position: static;
+		left: 0;
+	}
+	.accordion {
+		justify-content: center;
+		margin: 20px auto;
+	}
 }
 @media (max-width: 450px) {
 	.links {
 		margin: 0px 10px 0px 10px;
+	}
+	.balance-tabs {
+		font-size: 14.7px;
 	}
 }
