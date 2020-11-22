@@ -12,6 +12,10 @@ import {
 	VERIFY_ACCOUNT_SUCCESS,
 	VERIFY_ACCOUNT_FAILURE,
 
+	CHANGE_PASSWORD_FETCH,
+	CHANGE_PASSWORD_SUCCESS,
+	CHANGE_PASSWORD_FAILURE,
+
 	AUTH_MESSAGE,
 } from '../auth/action-types';
 
@@ -59,10 +63,23 @@ const AuthReduser = (prevState = {}, action) => {
 			return {
 				isCheckVerify: false,
 			}
+		case CHANGE_PASSWORD_FETCH:
+			return {
+				isCheckAuth: true,
+			}
+		case CHANGE_PASSWORD_SUCCESS:
+			return {
+				isCheckAuth: false,
+			}
+		case CHANGE_PASSWORD_FAILURE:
+			return {
+				isCheckAuth: false,
+			}
 		default:
 			return state;
 	}
 }
+
 
 const message = (prevState = {}, action) => {
 	switch (action.type) {
@@ -72,6 +89,8 @@ const message = (prevState = {}, action) => {
 		case AUTH_SIGNIN_FAILURE:
 		case VERIFY_ACCOUNT_SUCCESS:
 		case VERIFY_ACCOUNT_FAILURE:
+		case CHANGE_PASSWORD_SUCCESS:
+		case CHANGE_PASSWORD_FAILURE:
 			return { ...action.payload.message };
 		case AUTH_MESSAGE:
 			return {};

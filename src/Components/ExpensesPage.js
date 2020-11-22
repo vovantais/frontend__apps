@@ -3,7 +3,6 @@ import { Container, Form, Button } from 'react-bootstrap'
 import expenses from '../Img/expenses5.jpg';
 import { useDispatch } from "react-redux";
 import { PostExpensesFetch } from '../Redux/budget/action-creators';
-//import expenses from '../Img/expensesаfix.png';
 import styled from 'styled-components';
 
 const Section = styled.section`
@@ -67,7 +66,7 @@ function ExpensesPage() {
 							<Form.Label><i className="fas fa-hand-pointer"></i>Category</Form.Label>
 							<Form.Control as="select" tabIndex='2' name='category' required
 								onChange={handleChangeExpenses} value={userExpenses.category}>
-								<option selected>Select a category</option>
+								<option defaultValue='Select a category'>Select a category</option>
 								<option>Utility services</option>
 								<option>Car</option>
 								<option>Clothes</option>

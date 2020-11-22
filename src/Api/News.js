@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { API_TO_CONNECT_NEWS } from '../Consts/consts';
 import { Jumbotron as Jombo, Container, Spinner } from 'react-bootstrap';
 import styled from 'styled-components';
-import PaginationNews from '../Layouts/PaginationNews';
+import PaginationNews from '../Components/Pagination';
+import { slicePagination } from '../Helpers/SlicePagination';
+
 const Section = styled.section`
 	.jumbo{
 		background-color: #153449;
@@ -25,14 +27,7 @@ function News() {
 
 	const [news, setNews] = useState(initialState);
 
-	const slicePagination = (array, count) => {
-		const parts = [];
-		for (let i = 0; i < array.length; i = i + count) {
-			const [...newArray] = array;
-			parts.push(newArray.splice(i, count));
-		}
-		return parts;
-	};
+
 
 	useEffect(() => {
 		fetch(API_TO_CONNECT_NEWS)

@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthSignInFetch } from '../Redux/auth/action-creators';
 import VerifyUser from './VerifyUser';
 import styled from 'styled-components';
 import JumbotroneImg from '../Layouts/JumbotroneImg';
-
 
 const Section = styled.section`
 	width: 100%;
@@ -16,7 +15,7 @@ const Section = styled.section`
    align-content: center;
    justify-content: center;
    overflow: auto;
-   position: fixed;
+   position: absolute;
    top: 0;
    left: 0;
    right: 0;
@@ -39,17 +38,28 @@ function SigInForm() {
 		passwordError: '',
 		confirmPasswordError: '',
 	};
+
 	const [UserInfo, SetUserInfo] = useState(initialState);
 	const [show, setShow] = useState(false);
 	const { isCheckAuth } = useSelector(({ auth }) => auth.auth);
+
 	const dispatch = useDispatch();
+
+	const [citys, setCitys] = useState([]);
+
+	useEffect(() => {
+		fetch('output.json')
+			.then(res => res.json())
+			.then(res =>
+				setCitys(res.cities))
+	}, [])
 
 
 	const handleChangeInfo = (e) => {
 		console.log(e.target.value);
 		SetUserInfo({
 			...UserInfo,
-			[e.target.name]: e.target.value,
+			[e.target.name]: e.target.value.replace(/[^A-zА-яЁё 0-9.@ _]/ig, ''),
 		})
 	}
 	const validate = () => {
@@ -57,6 +67,10 @@ function SigInForm() {
 		let confirmPasswordError = '';
 		let userNameError = '';
 		let cityError = '';
+
+		if (citys.indexOf(UserInfo.city.toLocaleLowerCase()) === -1) {
+			cityError = 'This city is not found!';
+		}
 		if (UserInfo.city.length < 3) {
 			cityError = 'City must be more than 3 symbol letters!';
 		}
@@ -110,7 +124,7 @@ function SigInForm() {
 						<Form.Group controlId="formBasicName">
 							<Form.Label><i className="fas fa-info-circle"></i>Enter your Name</Form.Label>
 							<Form.Control type="text" name='userName' placeholder="Enter name"
-								onChange={handleChangeInfo} value={UserInfo.userName.replace(/[^A-zА-яЁё]/ig, '')} tabIndex='1' required />
+								onChange={handleChangeInfo} value={UserInfo.userName} tabIndex='1' required />
 						</Form.Group>
 						<Form.Group controlId="formBasicEmail">
 							<Form.Label><i className="far fa-envelope"></i> Enter your email address</Form.Label>
@@ -119,9 +133,9 @@ function SigInForm() {
 						</Form.Group>
 						<div><h6 style={{ color: 'red' }}>{UserInfo.cityError}</h6></div>
 						<Form.Group controlId="formBasicСity">
-							<Form.Label><i class="fas fa-city"></i> Enter your Сity</Form.Label>
+							<Form.Label><i className="fas fa-city"></i> Enter your Сity</Form.Label>
 							<Form.Control type="text" name='city' placeholder="Enter city"
-								onChange={handleChangeInfo} value={UserInfo.city.replace(/[^A-zА-яЁё _]/ig, '')} tabIndex='3' required />
+								onChange={handleChangeInfo} value={UserInfo.city.replace(/[^A-Z _]/ig, '')} tabIndex='3' required />
 						</Form.Group>
 						<div><h6 style={{ color: 'red' }}>{UserInfo.passwordError}</h6></div>
 						<Form.Group controlId="formBasicPassword">

@@ -5,6 +5,7 @@ import TableIncome from './TableIncome';
 import TableExpenses from './TableExpenses';
 import Balance from '../Components/Balance';
 import Chart from '../Components/Chart';
+import ChartBar from '../Components/ChartBar';
 import SortDateIncome from './SortDateIncome';
 import SortDateExpenses from './SortDateExpenses';
 import { Accordion, Card } from 'react-bootstrap';
@@ -49,6 +50,7 @@ function SchedulepPage() {
 			<TableIncome />
 			<TableExpenses />
 			<Chart />
+			<ChartBar />
 		</div>
 	);
 }

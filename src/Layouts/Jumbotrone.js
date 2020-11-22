@@ -8,7 +8,7 @@ import mainBG from '../Img/mainBG1.jpg';
 
 const Section = styled.section`
 	.jumbo{
-		background: url(${mainBG}) no-repeat fixed bottom;
+		background: url(${mainBG}) no-repeat;
 		background-size: cover;
 		color: #efefef;
 		position: relative;
@@ -18,8 +18,8 @@ const Section = styled.section`
 
 function Jumbotron() {
 	return (
-		<Section>
-			<Jombo fluid className='jumbo'>
+		<Section >
+			<Jombo fluid className='jumbo' >
 				<div className='overlay'></div>
 				<div className="mb-wrap mb-style">
 					<div className="mb-thumb "><img className='Franklin' src={franclin} alt="franclin" /></div>

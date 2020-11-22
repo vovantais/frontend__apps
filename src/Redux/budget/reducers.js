@@ -61,12 +61,8 @@ const income = (prevState = { incomes: [] }, action) => {
 		case POST_INCOME_FETCH:
 			return prevState;
 		case POST_INCOME_SUCCESS:
-			// todo закидывать в стор когда добовляешь 
-			// console.log(action.payload);
-			// return prevState.budget.income.incomes.push(action.payload)
-			return {
-				...prevState,
-			}
+			newState.incomes.push(action.payload.income);
+			return newState;
 		case POST_INCOME_FAILURE:
 			return prevState;
 		case DELETE_INCOME_FETCH:
@@ -88,12 +84,10 @@ const income = (prevState = { incomes: [] }, action) => {
 				isCheckAuth: true,
 			}
 		case PATCH_INCOME_DESCRIPTION_SUCCESS:
-			// todo сделать поиск и обновления дескрипшина в сторе 
 			// todo удалить isCheckAuth: false,
-			return {
-				...prevState,
-				isCheckAuth: false,
-			};
+			const index = newState.incomes.findIndex(item => item._id === action.payload.id);
+			newState.incomes[index].descriptionIncome = action.payload.description;
+			return newState;
 		case PATCH_INCOME_DESCRIPTION_FAILURE:
 			return {
 				...prevState,
@@ -126,11 +120,8 @@ const expenses = (prevState = { spenders: [] }, action) => {
 			return prevState;
 		case POST_EXPENSES_SUCCESS:
 			// todo закидывать в стор когда добовляешь 
-			// console.log(action.payload);
-			// return prevState.budget.income.incomes.push(action.payload)
-			return {
-				...prevState,
-			}
+			newState.spenders.push(action.payload.expenses);
+			return newState;
 		case POST_EXPENSES_FAILURE:
 			return prevState;
 		case DELETE_EXPENSES_FETCH:
@@ -152,12 +143,10 @@ const expenses = (prevState = { spenders: [] }, action) => {
 				isCheckAuth: true,
 			}
 		case PATCH_EXPENSES_DESCRIPTION_SUCCESS:
-			// todo сделать поиск и обновления дескрипшина в сторе 
 			// todo удалить isCheckAuth: false,
-			return {
-				...prevState,
-				isCheckAuth: false,
-			};
+			const index = newState.spenders.findIndex(item => item._id === action.payload.id);
+			newState.spenders[index].descriptionExpenses = action.payload.description;
+			return newState;
 		case PATCH_EXPENSES_DESCRIPTION_FAILURE:
 			return {
 				...prevState,

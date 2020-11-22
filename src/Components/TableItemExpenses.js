@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { PatchExpensesFetch } from '../Redux/budget/action-creators';
 import { useDispatch } from 'react-redux';
+
+
 function TableItemExpenses({ sumSpent, category, dateTimeExpenses, descriptionExpenses, _id, handleRemove, index }) {
 
 	const id = _id;
@@ -24,11 +26,11 @@ function TableItemExpenses({ sumSpent, category, dateTimeExpenses, descriptionEx
 
 	return (
 		<tr>
-			<td>{index + 1}</td>
+			<td className='hidden'>{index + 1}</td>
 			<td>-{sumSpent} BUN</td>
-			<td>{category}</td>
+			<td className='hidden'>{category}</td>
 			<td>{dateTimeExpenses.replace(/[T,]/gi, "-").split('-').reverse().join('-')}</td>
-			<td contentEditable='true' onInput={handleChangeDescription} >{descriptionExpenses}</td>
+			<td suppressContentEditableWarning="true" contentEditable='true' onInput={handleChangeDescription} >{descriptionExpenses}</td>
 			<td className='make-visible'><Button onClick={() => { handleRemove(id) }} variant="danger">Drop</Button>
 				<Button className="btn-visible" style={{ display: visible ? 'block' : 'none' }} onClick={() => { handleUpdate(id, description, descriptionExpenses) }} variant="info">Update</Button>
 			</td>
@@ -36,4 +38,4 @@ function TableItemExpenses({ sumSpent, category, dateTimeExpenses, descriptionEx
 	)
 }
 
-export default TableItemExpenses
+export default TableItemExpenses;

@@ -20,6 +20,7 @@ import SchedulepPage from '../Components/SchedulepPage';
 import IncomePage from '../Components/IncomePage';
 import ExpensesPage from '../Components/ExpensesPage';
 import NavbarCommon from '../Layouts/NavbarCommon';
+import Settings from '../Components/Settings';
 
 function Wrapper() {
 
@@ -67,7 +68,6 @@ function Wrapper() {
 						<NavbarCommon />
 						<HomePage />
 					</PrivateRoute>
-
 					<PrivateRoute exact path='/schedule'>
 						<NavbarCommon />
 						<SchedulepPage />
@@ -79,6 +79,10 @@ function Wrapper() {
 					<PrivateRoute exact path='/expenses'>
 						<NavbarCommon />
 						<ExpensesPage />
+					</PrivateRoute>
+					<PrivateRoute exact path='/settings'>
+						<NavbarCommon />
+						<Settings />
 					</PrivateRoute>
 					<Route>
 						<NotFoundPage path='*' />

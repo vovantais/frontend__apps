@@ -13,6 +13,10 @@ import {
 	VERIFY_ACCOUNT_SUCCESS,
 	VERIFY_ACCOUNT_FAILURE,
 
+	CHANGE_PASSWORD_FETCH,
+	CHANGE_PASSWORD_SUCCESS,
+	CHANGE_PASSWORD_FAILURE,
+
 	AUTH_MESSAGE,
 } from '../auth/action-types';
 
@@ -53,10 +57,7 @@ export const AuthSignInFail = (payload) => ({
 	payload,
 });
 
-export const AuthMessage = () => ({
-	type: AUTH_MESSAGE,
-});
-
+// * Auth Verify
 export const VerifyAccountFetch = (verifyPaylod) => (dispatch) => {
 	dispatch({
 		type: VERIFY_ACCOUNT_FETCH,
@@ -71,5 +72,30 @@ export const VerifyAccountSuccess = (payload) => ({
 });
 export const VerifyAccountFail = (payload) => ({
 	type: VERIFY_ACCOUNT_FAILURE,
+	payload,
+});
+
+// * AuthMessage
+export const AuthMessage = () => ({
+	type: AUTH_MESSAGE,
+});
+
+// * ChangePassword
+export const ChangePasswordFatch = (email) => (dispatch) => {
+	dispatch({
+		type: CHANGE_PASSWORD_FETCH,
+	})
+	axios.post(`${API_URI}/login/change`, { email })
+		.then(res => dispatch(ChangePasswordSuccess(res.data)))
+		.catch(err => dispatch(ChangePasswordFail(err.response.data)))
+}
+
+export const ChangePasswordSuccess = (payload) => ({
+	type: CHANGE_PASSWORD_SUCCESS,
+	payload,
+});
+
+export const ChangePasswordFail = (payload) => ({
+	type: CHANGE_PASSWORD_FAILURE,
 	payload,
 });

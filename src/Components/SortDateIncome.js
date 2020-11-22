@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
@@ -64,10 +64,10 @@ function SortDateIncome() {
 					<Form.Label><i className="far fa-calendar-alt"></i> Choose month</Form.Label>
 					<Form.Control as="select" tabIndex='1' name='month'
 						onChange={handleChangeDate} value={date.month} className='select-feild'>
-						<option selected>Select a month</option>
+						<option defaultValue='Select a month'  >Select a month</option>
 						{
-							[...arrMonth].map(item => (
-								<option>{item}</option>
+							[...arrMonth].map((item, index) => (
+								<option key={index}>{item}</option>
 							))
 						}
 					</Form.Control>
@@ -76,10 +76,10 @@ function SortDateIncome() {
 					<Form.Label><i className="far fa-calendar-alt"></i> Choose year</Form.Label>
 					<Form.Control as="select" tabIndex='2' name='year'
 						onChange={handleChangeDate} value={date.year} className='select-feild'>
-						<option selected>Select a year</option>
+						<option defaultValue='Select a year' >Select a year</option>
 						{
-							[...arrYear].map(item => (
-								<option>{item}</option>
+							[...arrYear].map((item, index) => (
+								<option key={index}>{item}</option>
 							))
 						}
 					</Form.Control>

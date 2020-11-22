@@ -25,7 +25,7 @@ function VerifyUser(modal) {
 		console.log(e.target.value);
 		setVerifyUser({
 			...verifyUser,
-			[e.target.name]: e.target.value,
+			[e.target.name]: e.target.value.replace(/[^A-zА-яЁё 0-9.@ _]/ig, ''),
 		})
 	}
 

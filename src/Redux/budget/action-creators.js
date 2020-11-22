@@ -76,9 +76,8 @@ export const PostIncomeFetch = (newIncome) => (dispatch, getStore) => {
 		})
 		.then(res => {
 			dispatch(PostIncomeSucces({
-				message: res.data,
-				// todo что приходит с бека и в reducers
-				income: newIncome,
+				message: res.data.message,
+				income: res.data.result,
 			}));
 		})
 		.catch(err => dispatch(PostIncomeFail({ message: err.response.data })))
@@ -130,9 +129,8 @@ export const PostExpensesFetch = (newExpenses) => (dispatch, getStore) => {
 		})
 		.then(res => {
 			dispatch(PostExpensesSucces({
-				message: res.data,
-				// todo что приходит с бека и в reducers
-				expenses: newExpenses,
+				message: res.data.message,
+				expenses: res.data.result,
 			}));
 		})
 		.catch(err => dispatch(PostExpensesFail({ message: err.response.data })))
@@ -159,7 +157,7 @@ export const PatchIncomeFetch = (id, description) => (dispatch, getStore) => {
 			'Authorization': auth && auth.auth.token,
 		}
 	})
-		.then(res => dispatch(PatchIncomeSuccess(res.data)))
+		.then(res => dispatch(PatchIncomeSuccess({ ...res.data, id, description })))
 		.catch(err => dispatch(PatchIncomeFail(err.response.data)))
 }
 export const PatchIncomeSuccess = (payload) => ({
@@ -185,7 +183,7 @@ export const PatchExpensesFetch = (id, description) => (dispatch, getStore) => {
 			'Authorization': auth && auth.auth.token,
 		}
 	})
-		.then(res => dispatch(PatchExpensesSuccess(res.data)))
+		.then(res => dispatch(PatchExpensesSuccess({ ...res.data, id, description })))
 		.catch(err => dispatch(PatchExpensesFail(err.response.data)))
 }
 

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Form, Button, Container } from 'react-bootstrap';
+import { Form, Button, Container, Nav } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthLogInFetch } from '../Redux/auth/action-creators';
 import styled from 'styled-components';
 import JumbotroneImg from '../Layouts/JumbotroneImg';
+import ModalPasswordChange from './ModalPasswordChange';
 
 const Section = styled.section`
 	width: 100%;
@@ -15,7 +16,7 @@ const Section = styled.section`
    align-content: center;
    justify-content: center;
    overflow: auto;
-   position: fixed;
+   position: absolute;
    top: 0px;
    left: 0;
    right: 0;
@@ -35,6 +36,7 @@ function LogInForm() {
 
 	const [UserInfo, SetUserInfo] = useState(initialState);
 	const { isCheckAuth, isAuthenticated } = useSelector(({ auth }) => auth.auth);
+	const [show, setShow] = useState(false);
 	const dispatch = useDispatch();
 
 	const isEpmtyValue = (UserInfo) => {
@@ -49,7 +51,7 @@ function LogInForm() {
 	const handleChangeInfo = (e) => {
 		SetUserInfo({
 			...UserInfo,
-			[e.target.name]: e.target.value,
+			[e.target.name]: e.target.value.replace(/[^A-zА-яЁё 0-9.@ _]/ig, ''),
 		});
 	}
 
@@ -59,7 +61,11 @@ function LogInForm() {
 			SetUserInfo(initialState);
 		}
 	}
-
+	const handleCloseModal = () => setShow(false);
+	const handleShowModal = (e) => {
+		e.preventDefault()
+		setShow(true);
+	}
 	const AuthorizationForm = (
 		<>
 			<JumbotroneImg />
@@ -82,7 +88,9 @@ function LogInForm() {
 								style={{ width: 120 }} disabled={isCheckAuth} >Log In</Button>
 						</div>
 					</Form>
+					<a href='#' variant='info' onClick={handleShowModal} className='forgot-password'>Forgot your password?</a>
 				</Section>
+				<ModalPasswordChange showModal={show} closeModal={handleCloseModal} />
 			</Container>
 		</>
 	);

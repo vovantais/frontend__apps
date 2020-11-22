@@ -24,10 +24,10 @@ function TableItemIncome({ sumIncome, dateTimeIncome, descriptionIncome, _id, ha
 	}
 	return (
 		<tr>
-			<td>{index + 1}</td>
+			<td className='hidden'>{index + 1}</td>
 			<td>+{sumIncome} BUN</td>
 			<td>{dateTimeIncome.replace(/[T,]/gi, "-").split('-').reverse().join('-')}</td>
-			<td contentEditable='true' onInput={handleChangeDescription}>{descriptionIncome}</td>
+			<td suppressContentEditableWarning="true" contentEditable='true' onInput={handleChangeDescription}>{descriptionIncome}</td>
 			<td className='make-visible'>
 				<Button onClick={() => { handleRemove(id) }} variant="danger">Drop</Button>
 				<Button className="btn-visible" style={{ display: visible ? 'block' : 'none' }}

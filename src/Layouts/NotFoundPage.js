@@ -3,7 +3,7 @@ import React from 'react';
 function NotFoundPage() {
 	return (
 		<div className='text-center'>
-			<h2> 404 this page is not found!</h2>
+			<h2> 404 This page is not found!</h2>
 		</div>
 	)
 }

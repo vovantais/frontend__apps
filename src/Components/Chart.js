@@ -12,28 +12,10 @@ function Chart() {
 			{
 				label: 'chart',
 				backgroundColor: [
-					'#B21F00',
-					'#C9DE00',
-					'#2FDE00',
-					'#00A6B4',
-					'#6800B4',
-					'#ccaf52',
-					'#9c3aba',
-					'#c27748',
-					'#3cd6c9',
-					'#718070',
+					'#B21F00', '#C9DE00', '#2FDE00', '#00A6B4', '#6800B4', '#ccaf52', '#9c3aba', '#c27748', '#3cd6c9', '#718070', '#FF00FF', '#A0522D', '#8A2BE2', '#FF6347', '#FF1493', '#00FF00', '#6B8E23', '#00FFFF', '#0000FF', '#808080', '#2F4F4F', '#A52A2A'
 				],
 				hoverBackgroundColor: [
-					'#501800',
-					'#4B5000',
-					'#175000',
-					'#003350',
-					'#35014F',
-					'#8c7732',
-					'#5a1b6e',
-					'#753e1b',
-					'#1c756e',
-					'#333833',
+					'#501800', '#4B5000', '#175000', '#003350', '#35014F', '#8c7732', '#5a1b6e', '#753e1b', '#1c756e', '#333833', '#800080', '#8B4513', '#9370DB', '#FF4500', '#C71585', '#32CD32', '#556B2F', '#00CED1', '#00008B', '#696969', '#2F4F4F', '#800000',
 				],
 				data: [],
 			}
@@ -42,6 +24,7 @@ function Chart() {
 
 	const income = useSelector(({ budget }) => budget.income.incomes);
 	const expenses = useSelector(({ budget }) => budget.expenses.spenders);
+
 	const [chart, setChart] = useState(initialState);
 
 
@@ -59,22 +42,25 @@ function Chart() {
 	}, [income.length, expenses.length])
 
 	return (
-		<div>
-			<Doughnut
-				data={chart}
-				options={{
-					title: {
-						display: true,
-						text: 'Chart',
-						fontSize: 20
-					},
-					legend: {
-						display: true,
-						position: 'top'
-					}
-				}}
-			/>
-		</div >
+		income.length || expenses.length > 1 ?
+			(<div className='crart-size'>
+				<Doughnut
+					data={chart}
+					options={{
+						title: {
+							display: true,
+							text: 'Diagram income and expenses',
+							fontSize: 22
+						},
+						legend: {
+							display: true,
+							position: 'top'
+						},
+						responsive: true,
+						maintainAspectRatio: false,
+					}}
+				/>
+			</div >) : null
 	)
 }
 
