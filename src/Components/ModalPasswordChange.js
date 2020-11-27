@@ -23,8 +23,8 @@ function ModalPasswordChange(modal) {
 		e.preventDefault();
 		if (isEpmtyValue(email)) {
 			dispatch(ChangePasswordFatch(email));
+			setEmail('');
 		}
-		setEmail('');
 	}
 	return (
 		<Modal show={modal.showModal} onHide={modal.closeModal} style={{ marginTop: 20, }} >
@@ -36,7 +36,7 @@ function ModalPasswordChange(modal) {
 					<Form.Group controlId="formBasicEmailAddress">
 						<Form.Label> <i className="far fa-envelope"></i> Enter your email address</Form.Label>
 						<Form.Control type="email" name='email' placeholder="Enter email"
-							onChange={handleChangeUserInfo} tabIndex='1' required />
+							onChange={handleChangeUserInfo} tabIndex='1' required value={email} />
 					</Form.Group>
 					<div className="text-center" >
 						<Button variant="info" className='btn-active' type='submit' name='btnEmael'

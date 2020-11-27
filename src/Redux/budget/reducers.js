@@ -119,7 +119,6 @@ const expenses = (prevState = { spenders: [] }, action) => {
 		case POST_EXPENSES_FETCH:
 			return prevState;
 		case POST_EXPENSES_SUCCESS:
-			// todo закидывать в стор когда добовляешь 
 			newState.spenders.push(action.payload.expenses);
 			return newState;
 		case POST_EXPENSES_FAILURE:

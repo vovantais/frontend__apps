@@ -6,7 +6,7 @@ function Time() {
 		time: new Date(),
 	}
 	const [time, setTime] = useState(initialState);
-	const name = useSelector(({ auth }) => auth.auth.userName);
+	const name = useSelector(({ settings }) => settings.settings.userName);
 
 	const getTimeZone = () => {
 		let timeZone = '';

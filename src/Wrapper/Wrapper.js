@@ -9,9 +9,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthMessage } from '../Redux/auth/action-creators';
 import { Message } from '../Redux/budget/action-creators';
+import { settingsMessage } from '../Redux/settings/action-creators';
 import LogInForm from '../Components/LogInForm';
 import HomePage from '../Components/HomePage';
-import SigInForm from '../Components/SiginForm';
+import SignInForm from '../Components/SignInForm';
 import PrivateRoute from '../Components/PrivateRoute';
 import AuthPage from '../Layouts/AuthPage';
 import NotFoundPage from '../Layouts/NotFoundPage';
@@ -24,14 +25,17 @@ import Settings from '../Components/Settings';
 
 function Wrapper() {
 
-	const { text, success } = useSelector(({ auth }) => auth.message);
+	const { text, success } = useSelector(({ auth }) => auth.messages);
 	const { message, type } = useSelector(({ budget }) => budget.messages);
+	const { mes, kind } = useSelector(({ settings }) => settings.messages);
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		toast[success ? 'success' : 'error'](text, { onClose: dispatch(AuthMessage()) });
 		toast[type ? 'success' : 'error'](message, { onClose: dispatch(Message()) });
-	}, [text, message]);
+		toast[kind ? 'success' : 'error'](mes, { onClose: dispatch(settingsMessage()) });
+	}, [text, message, mes]);
 
 	return (
 		<>
@@ -62,7 +66,7 @@ function Wrapper() {
 					</Route>
 					<Route exact path='/signin'>
 						<NavAuth />
-						<SigInForm />
+						<SignInForm />
 					</Route>
 					<PrivateRoute exact path='/homepage'>
 						<NavbarCommon />

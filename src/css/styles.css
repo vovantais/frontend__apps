@@ -487,8 +487,7 @@ tbody {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 0 auto;
-	margin: 20px 0px 0px 0px;
+	margin: 20px auto auto auto;
 }
 @media (max-width: 1200px) {
 	.NewsGrid {

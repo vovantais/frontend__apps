@@ -30,8 +30,6 @@ const AuthReduser = (prevState = {}, action) => {
 			return {
 				isCheckAuth: false,
 				token: action.payload.token,
-				userName: action.payload.userName,
-				city: action.payload.city,
 				isAuthenticated: true,
 			}
 		case AUTH_LOGIN_FAILURE:
@@ -81,7 +79,7 @@ const AuthReduser = (prevState = {}, action) => {
 }
 
 
-const message = (prevState = {}, action) => {
+const messages = (prevState = {}, action) => {
 	switch (action.type) {
 		case AUTH_LOGIN_SUCCESS:
 		case AUTH_LOGIN_FAILURE:
@@ -100,6 +98,6 @@ const message = (prevState = {}, action) => {
 }
 export default combineReducers({
 	auth: AuthReduser,
-	message,
+	messages,
 });
 

@@ -10,7 +10,7 @@ function Weather() {
 	};
 
 	const [weather, setWeather] = useState(initialState);
-	const CITY = useSelector(({ auth }) => auth.auth.city);
+	const CITY = useSelector(({ settings }) => settings.settings.city);
 
 	useEffect(() => {
 		fetch(`https://api.openweathermap.org/data/2.5/weather?q=${CITY}&lang=en&appid=09614ed9c1f7f523fb5ce134d47fc2a4&units=metric`)
