@@ -6,6 +6,8 @@ import { Doughnut } from 'react-chartjs-2';
 
 function Chart() {
 
+	let sortResult = null;
+
 	const initialState = {
 		labels: [],
 		datasets: [
@@ -26,20 +28,55 @@ function Chart() {
 	const expenses = useSelector(({ budget }) => budget.expenses.spenders);
 
 	const [chart, setChart] = useState(initialState);
+	const { month, year } = useSelector(({ sort }) => sort.filterDiagrama);
 
 
+	// const initialStateSort = {
+	// 	month: '',
+	// 	year: '',
+	// }
+	// const { sort, setSort } = useState(initialStateSort);
+
+	// useEffect(() => {
+	// 	chart.labels = [];
+	// 	chart.datasets[0].data = [];
+	// 	income && income.map((item) => {
+	// 		chart.datasets[0].data.push('+' + item.sumIncome);
+	// 		chart.labels.push(item.descriptionIncome);
+	// 	});
+	// 	expenses && expenses.map((item) => {
+	// 		chart.datasets[0].data.push('-' + item.sumSpent)
+	// 		chart.labels.push(item.category)
+	// 	});
+	// }, [income.length, expenses.length])
+
+	// 	expenses && expenses.map((item, index) => {
+	// 	if (((new Date(item.dateTimeExpenses)).getFullYear()).toString() === year &&
+	// 		(new Date(item.dateTimeExpenses)).toLocaleString('en-us', { month: 'long' }) === month) {
+	// 		chart.datasets[0].data.push('-' + item.sumSpent)
+	// 		chart.labels.push(item.category);
+	// 	}
+	// })
+
+	// todo make render if feild month and year change 
 	useEffect(() => {
 		chart.labels = [];
 		chart.datasets[0].data = [];
-		income && income.map((item) => {
-			chart.datasets[0].data.push('+' + item.sumIncome);
-			chart.labels.push(item.descriptionIncome);
-		});
+		income && income.map(item => {
+			if (new Date(item.dateTimeIncome).toLocaleString('en-us', { month: 'long' }) === new Date().toLocaleString('en-us', { month: 'long' }) && new Date(item.dateTimeIncome).getFullYear() === new Date().getFullYear()) {
+				chart.datasets[0].data.push('+' + item.sumIncome);
+				chart.labels.push(item.descriptionIncome);
+			}
+		})
 		expenses && expenses.map((item) => {
-			chart.datasets[0].data.push('-' + item.sumSpent)
-			chart.labels.push(item.category)
+			if (new Date(item.dateTimeExpenses).toLocaleString('en-us', { month: 'long' }) === new Date().toLocaleString('en-us', { month: 'long' }) && new Date(item.dateTimeExpenses).getFullYear() === new Date().getFullYear()) {
+				chart.datasets[0].data.push('-' + item.sumSpent)
+				chart.labels.push(item.category);
+			}
 		});
-	}, [income.length, expenses.length])
+	}, [income.length, expenses.length]);
+
+
 
 	return (
 		income.length || expenses.length > 1 ?

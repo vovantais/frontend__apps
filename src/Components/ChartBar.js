@@ -52,6 +52,7 @@ function ChartBar() {
 		chart.datasets[0].data.push('-' + ExpensesAll());
 		chart.datasets[0].data.length > 0 && chart.labels.push(new Date().toLocaleString('en-us', { month: 'long' }) + " " + new Date().getFullYear());
 	}, [income.length, expenses.length])
+
 	return (
 		income.length || expenses.length > 1 ?
 			(<div className='crart-bar'>

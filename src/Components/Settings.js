@@ -4,7 +4,12 @@ import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 import settings from '../Img/settings.jpg';
 import { useDispatch } from 'react-redux';
-import { patchCityFetch, patchNameFetch } from '../Redux/settings/action-creators';
+import {
+	patchCityFetch,
+	patchNameFetch,
+	patchPasswordFetch
+}
+	from '../Redux/settings/action-creators';
 
 const Image = styled.section`
 		background: url(${settings}) no-repeat  ;
@@ -25,12 +30,17 @@ function Settings() {
 		history.push("/");
 		window.location.reload();
 	}
+	const initialStatePassword = {
+		newPassword: '',
+		password: '',
+	}
 
 	const [name, setName] = useState('');
 	const [userError, setUserError] = useState('');
 	const [city, setCity] = useState('');
 	const [citys, setCitys] = useState([]);
 	const [cityError, setCityError] = useState('');
+	const [password, setPassword] = useState(initialStatePassword);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -40,9 +50,15 @@ function Settings() {
 				setCitys(res.cities))
 	}, [])
 
+	const handleChangePassword = (e) => {
+		setPassword({
+			...password,
+			[e.target.name]: e.target.value,
+		})
+	}
+
 	const validateCity = () => {
 		let cityError = '';
-		let userError = '';
 		if (citys.indexOf(city.toLocaleLowerCase()) === -1) {
 			cityError = 'This city is not found!';
 		}
@@ -53,26 +69,39 @@ function Settings() {
 			setCityError(cityError);
 			return false;
 		}
-		// if (name.length < 3) {
-		// 	userError = 'Name must be more than 3 symbol letters!';
-		// }
-		// if (userError) {
-		// 	setName(userError);
-		// 	return false;
-		// }
 		return true;
 	}
 
-	const handleChangeCity = (e) => setCity(e.target.value.replace(/[^A-z _]/ig, ''));
+	const validateName = () => {
+		let userError = '';
+		if (name.length < 3) {
+			userError = 'This name too short!';
+		}
+		if (userError) {
+			setUserError(userError);
+			return false;
+		}
+		return true;
+	}
 
-	const handleChangeName = (e) => setName(e.target.value.replace(/[^A-z _]/ig, ''));
+	const handleChangeCity = (e) => setCity(e.target.value.replace(/[^A-z _]/ig, '').trim());
+
+	const handleChangeName = (e) => setName(e.target.value.replace(/[^A-z _]/ig, '').trim());
+
+	const handleSendPassword = (e) => {
+		e.preventDefault();
+		dispatch(patchPasswordFetch(password));
+		setPassword(initialStatePassword);
+	}
+
 
 	const handleSendName = (e) => {
 		e.preventDefault();
-		// if (isValid) {
-		dispatch(patchNameFetch(name));
-		setName('');
-		//}
+		const isValid = validateName();
+		if (isValid) {
+			dispatch(patchNameFetch(name));
+			setName('');
+		}
 	}
 
 	const handleSendCity = (e) => {
@@ -100,17 +129,6 @@ function Settings() {
 									tabIndex='2' style={{ width: 120 }} onClick={handleSendName} >Send</Button>
 							</div>
 						</div>
-						<div className='change-email'>
-							<Form.Group controlId="formBasicEmail" >
-								<Form.Label> <i className="far fa-envelope"></i> Change email address</Form.Label>
-								<Form.Control type="email" name='email' placeholder="Enter email"
-									tabIndex='3' />
-							</Form.Group>
-							<div className='text-center'>
-								<Button variant='info' className='btn-active' type='submit' name='btnEmail'
-									tabIndex='4' style={{ width: 120 }}  >Send</Button>
-							</div>
-						</div>
 						<div className='change-city'>
 							<div><h6 style={{ color: 'red' }}>{cityError}</h6></div>
 							<Form.Group controlId="formBasicСity">
@@ -127,16 +145,16 @@ function Settings() {
 							<Form.Group controlId="formBasicPassword">
 								<Form.Label ><i className="fas fa-lock"></i>Enter current password</Form.Label>
 								<Form.Control type="password" name='password' placeholder="Enter password"
-									tabIndex='7' />
+									tabIndex='7' onChange={handleChangePassword} value={password.password} />
 							</Form.Group>
 							<Form.Group controlId="formBasicNewPassword">
 								<Form.Label><i className="fas fa-lock"></i>Enter new password</Form.Label>
 								<Form.Control type="password" name='newPassword' placeholder="New password"
-									className='validate' tabIndex='8' />
+									className='validate' tabIndex='8' onChange={handleChangePassword} value={password.newPassword} />
 							</Form.Group>
 							<div className='text-center'>
 								<Button variant='info' className='btn-active' type='submit' name='btnPassword'
-									tabIndex='9' style={{ width: 120 }}  >Send</Button>
+									tabIndex='9' style={{ width: 120 }} onClick={handleSendPassword} >Send</Button>
 							</div>
 						</div>
 					</Form>

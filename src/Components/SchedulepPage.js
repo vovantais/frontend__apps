@@ -8,6 +8,7 @@ import Chart from '../Components/Chart';
 import ChartBar from '../Components/ChartBar';
 import SortDateIncome from './SortDateIncome';
 import SortDateExpenses from './SortDateExpenses';
+import SortDiagrama from './SortDiagrama';
 import { Accordion, Card } from 'react-bootstrap';
 
 
@@ -43,6 +44,14 @@ function SchedulepPage() {
     				</Accordion.Toggle>
 						<Accordion.Collapse eventKey="1" >
 							<Card.Body><SortDateExpenses /></Card.Body>
+						</Accordion.Collapse>
+					</Card>
+					<Card >
+						<Accordion.Toggle as={Card.Header} className="accordion-toogle " eventKey="2">
+							Sort Diagrama by date
+    				</Accordion.Toggle>
+						<Accordion.Collapse eventKey="2" >
+							<Card.Body><SortDiagrama /></Card.Body>
 						</Accordion.Collapse>
 					</Card>
 				</Accordion>

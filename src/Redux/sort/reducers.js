@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import {
 	SORT_INCOME,
 	SORT_EXPENSES,
+	SORT_DIAGRAMA,
 } from './action-types';
 
 const filterIncome = (state = {}, action) => {
@@ -26,7 +27,19 @@ const filterExpenses = (state = {}, action) => {
 			}
 	}
 }
+const filterDiagrama = (stata = {}, action) => {
+	switch (action.type) {
+		case SORT_DIAGRAMA:
+			return action.payload;
+		default:
+			return {
+				month: '',
+				year: '',
+			}
+	}
+}
 export default combineReducers({
 	filterIncome,
 	filterExpenses,
+	filterDiagrama,
 });

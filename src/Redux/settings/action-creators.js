@@ -10,6 +10,11 @@ import {
 	PATCH_CITY_SUCCESS,
 	PATCH_CITY_FAILURE,
 
+	// *Password
+	PATCH_PASSWORD_FETCH,
+	PATCH_PASSWORD_SUCCESS,
+	PATCH_PASSWORD_FAILURE,
+
 	//*Message
 	SETTINGS_MESSAGE,
 } from './action-types';
@@ -44,7 +49,6 @@ export const patchCityFail = (payload) => ({
 });
 
 export const patchNameFetch = (name) => (dispatch, getStore) => {
-	console.log(name);
 	dispatch({
 		type: PATCH_NAME_FETCH,
 	})
@@ -68,6 +72,30 @@ export const patchNameSuccess = (payload) => ({
 
 export const patchNameFail = (payload) => ({
 	type: PATCH_NAME_FAILURE,
+	payload,
+});
+
+export const patchPasswordFetch = (password) => (dispatch, getStore) => {
+	dispatch({
+		type: PATCH_PASSWORD_FETCH,
+	})
+	const { auth } = getStore();
+	axios.patch(`${API_URI}/password`, password, {
+		headers: {
+			'Authorization': auth && auth.auth.token,
+		}
+	})
+		.then(res => dispatch(patchPasswordSuccess(res.data)))
+		.catch(err => dispatch(patchPasswordFail(err.response.data)))
+}
+
+export const patchPasswordSuccess = (payload) => ({
+	type: PATCH_PASSWORD_SUCCESS,
+	payload,
+});
+
+export const patchPasswordFail = (payload) => ({
+	type: PATCH_PASSWORD_FAILURE,
 	payload,
 });
 
